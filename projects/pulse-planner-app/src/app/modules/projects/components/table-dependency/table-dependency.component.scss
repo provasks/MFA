@@ -1,0 +1,33 @@
+@import "../../../../../styles.scss";
+
+.dependency-table-comp {
+    color: $header-color;
+
+    .thead-light {
+        background-color: $dependency-table-header-bg;
+
+        th {
+            color: $header-color;
+            font-weight: 600;
+            font-size: 16px;
+
+            &.dependency-type {
+                width: 30%;
+                min-width: 200px;
+            }
+
+            &.task-title {
+                width: 70%;
+                min-width: 300px;
+            }
+        }
+    }
+
+    td {
+        color: $header-color;
+        font-weight: 600;
+        img {
+            cursor: pointer;
+        }
+    }
+}

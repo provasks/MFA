@@ -1,0 +1,56 @@
+@import "./../../../../../styles.scss";
+
+@each $key, $value in $status {
+    .bar-container {
+        height: $table-row-height;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        .gantt-bar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+            color: $dashboard-tile-background;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: default;
+            z-index: 3;
+
+            &.#{$key} {
+                border: 1px solid $value;
+                background-color: $value;
+                .hamburger {
+                    font-size: 14px;
+                    width: 18px;
+                    height: 18px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: darken($value, 15%);
+                    border-radius: 12px;
+                    border: 1px solid darken($value, 15%);
+                    position: absolute;
+                    right: 4px;
+                }
+
+                &:hover {
+                    background-color: darken($value, 10%);
+                }
+            }
+        }
+        &[hirarchy^='parent'] .gantt-bar {
+            height: calc(#{$table-row-height * 0.8});
+        }
+        &[hirarchy^='normal'] .gantt-bar {
+            height: calc(#{$table-row-height * 0.8});
+        }
+        &[hirarchy^='child'] .gantt-bar {
+            height: calc(#{$table-row-height * 0.5});
+        }
+    }
+}

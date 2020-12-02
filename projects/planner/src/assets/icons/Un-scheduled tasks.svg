@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.242" height="28.494" viewBox="0 0 33.242 28.494">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #d8d8d8;
+        stroke-width: 0.5px;
+      }
+
+      .cls-2 {
+        fill: #707070;
+        font-size: 17px;
+        font-family: FontAwesome5Free-Solid, 'Font Awesome 5 Free';
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Un-scheduled_tasks" data-name="Un-scheduled tasks" transform="translate(-632 -163)">
+    <g id="Rectangle_2194" data-name="Rectangle 2194" class="cls-1" transform="translate(632 163)">
+      <rect class="cls-3" width="33.242" height="28.494" rx="5"/>
+      <rect class="cls-4" x="0.25" y="0.25" width="32.742" height="27.994" rx="4.75"/>
+    </g>
+    <text id="calendar-alt" class="cls-2" transform="translate(641 184)"><tspan x="0" y="0">calendar-alt</tspan></text>
+  </g>
+</svg>

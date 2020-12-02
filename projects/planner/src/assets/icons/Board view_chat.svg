@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11" height="11.001" viewBox="0 0 11 11.001">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #a4a4a4;
+      }
+    </style>
+  </defs>
+  <path id="Board_view_chat" data-name="Board view_chat" class="cls-1" d="M9.625-9.625H1.375A1.376,1.376,0,0,0,0-8.25v6.188A1.376,1.376,0,0,0,1.375-.687H3.438v1.8a.258.258,0,0,0,.41.208L6.531-.687H9.625A1.376,1.376,0,0,0,11-2.062V-8.25A1.376,1.376,0,0,0,9.625-9.625Z" transform="translate(0 9.625)"/>
+</svg>

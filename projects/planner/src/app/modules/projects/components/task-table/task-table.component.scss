@@ -1,0 +1,319 @@
+@import "./../../../../../styles.scss";
+
+.task-table {
+    border-collapse: separate;
+    /* Don't collapse */
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+    .mat-select {
+        visibility: hidden;
+    }
+    .columntitle {
+        display: block;
+        height: 100%;
+        cursor: default;
+        .mat-icon {
+            vertical-align: bottom;
+        }
+    }
+    thead {
+        font-size: 14px;
+        tr {
+            height: 58px;
+            .mat-form-field-appearance-outline .mat-form-field-outline {
+                background-color: $filter-bg-color;
+            }
+            th {
+                border-right: 1px solid $lightgray;
+                border-bottom: 1px solid $lightgray;
+                font-weight: normal;
+                padding-left: 10px;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                background-color: $dependency-table-header-bg;
+                z-index: 1;
+                span {
+                    cursor: pointer;
+                }
+                &:last-of-type {
+                    background-color: transparent;
+                    border-right: none;
+                    border-top: none;
+                    border-bottom: none;
+                }
+                &.date {
+                    width: 120px;
+                }
+                &.tasks {
+                    width: 150px;
+                    .tasktitle,
+                    .taskcount {
+                        position: relative;
+                        top: 3px;
+                        padding: 2px;
+                    }
+                }
+                &.bucket {
+                    width: 120px;
+                }
+                &.assignee {
+                    width: 170px;
+                }
+                &.label {
+                    width: 115px;
+                }
+                &.action-list {
+                    width: auto;
+                }
+
+                mat-label {
+                    display: inline-block;
+                }
+                .arrow {
+                    display: inline-block;
+                    width: 0;
+                    height: 0;
+                    position: relative;
+                    cursor: pointer;
+                    top: -2px;
+                    margin-left: 5px;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    &.up {
+                        border-bottom: 5px solid $gantt-handle-background;
+                    }
+                    &.down {
+                        border-top: 5px solid $gantt-handle-background;
+                    }
+                }
+            }
+        }
+    }
+    tbody {
+        font-size: 13px;
+
+        tr {
+            height: $table-row-height;
+            &[class^="parent-"] {
+                td:first-child {
+                    padding-left: 2px;
+                    // background-color: red;
+                    .arrow {
+                        width: 0;
+                        height: 0;
+                        border-top: 5px solid transparent;
+                        border-bottom: 5px solid transparent;
+                        border-left: 5px solid $gantt-handle-background;
+                        position: relative;
+                        cursor: pointer;
+                        &.collapse {
+                            top: 0;
+                        }
+                        &.expand {
+                            left: 2px;
+                            top: 2px;
+                            transform: rotate(45deg);
+                            -webkit-transform: rotate(45deg);
+                        }
+                    }
+                    div {
+                        display: inline-block;
+                    }
+                }
+            }
+            &.child {
+                td:first-child {
+                    padding-left: 18px;
+                }
+            }
+            .actions {
+                display: none;
+                position: absolute;
+                right: 0px;
+                height: $table-row-height;
+                padding: 5px 8px;
+                background-color: map-get($month, even);
+                border: 1px solid $lightblue;
+                span {
+                    cursor: pointer;
+                    margin: 2px 5px;
+                    img {
+                        height: 16px;
+                    }
+                }
+            }
+            &:hover {
+                background-color: $highlighted-row-color;
+                .actions {
+                    display: block;
+                }
+            }
+            td {
+                border-right: 1px solid $lightgray;
+                border-bottom: 1px solid $lightgray;
+                padding-left: 10px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 0;
+                /* Avoid resizing beyond table width */
+                &:last-of-type {
+                    border-right: none;
+                    border-top: none;
+                    border-bottom: none;
+                    &:hover {
+                        border: 1px sol;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mat-form-field {
+    margin-left: 14px;
+    margin-bottom: -10px;
+    width: 90%;
+    .mat-form-field-outline {
+        background-color: $filter-bg-color;
+        // border: #A8A8A8;
+        font-size: 14px;
+    }
+    .mat-form-field-infix {
+        padding: 16px 0;
+        border: none;
+    }
+}
+
+.tableClear {
+    font-size: 13px;
+    color: $filter-clear-color;
+    float: right;
+}
+
+.filter-item {
+    cursor: default;
+    padding: 10px;
+    font-size: 16px;
+    .tableClear {
+        cursor: pointer;
+    }
+}
+
+.active {
+    background-color: $highlighted-row-color;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.filterLeftAlign {
+    margin-left: 1rem !important;
+}
+
+.option-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.deactivateCrossIcon {
+    color: $decactivate-label-check-color;
+}
+
+.labelPink {
+    padding: 0px 5px 0px 5px;
+    color: $label-pink-color;
+    background-color: $label-pink-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.labelRed {
+    padding: 0px 5px 0px 5px;
+    color: $label-red-color;
+    background-color: $label-red-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.labelYellow {
+    padding: 0px 5px 0px 5px;
+    color: $label-yellow-color;
+    background-color: $label-yellow-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.labelGreen {
+    padding: 0px 5px 0px 5px;
+    color: $label-green-color;
+    background-color: $label-green-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.labelBlue {
+    padding: 0px 5px 0px 5px;
+    color: $label-blue-color;
+    background-color: $label-blue-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.labelPurple {
+    padding: 0px 5px 0px 5px;
+    color: $label-purple-color;
+    background-color: $label-purple-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+.labelBlack {
+    padding: 0px 5px 0px 5px;
+    color: $label-black-color;
+    background-color: $label-black-background;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.mat-menu-item {
+    outline: none;
+    height: 32px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.view-panel {
+    font-size: 12px;
+    height: 0;
+}
+
+.add-task-modal {
+    max-width: 660px;
+    width: 40%;
+    // border: 1px solid #ccc;
+    height: calc(100vh);
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $dashboard-tile-background 0% 0% no-repeat padding-box;
+    box-shadow: 0px 8px 9px #00000029;
+    border: 0.4000000059604645px solid $label-black-background;
+    // display: none;
+    z-index: 100;
+}
+
+.add-task-modal-sec {
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 0;
+        border: none;
+    }
+    .mat-form-field-suffix {
+        position: absolute;
+        right: 15px;
+        top: 5px;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        display: none;
+    }
+}

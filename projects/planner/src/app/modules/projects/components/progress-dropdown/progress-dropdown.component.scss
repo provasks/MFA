@@ -1,0 +1,84 @@
+@import "./../../../../../styles.scss";
+
+.status-dropdown {
+
+   
+    height: 44px;
+    border: 1px solid $label-dropdown-boredr;
+    border-radius: 4px;
+    background-color: $input-bg-color;
+    position: relative;
+
+    .status-menu-btn {
+        outline: none;
+        width: 100%;
+        text-align: left;
+        box-shadow: none;
+        height: 40px;
+        font-size: 14px;
+        padding-left: 5px;
+
+        .status-icon {
+            position: relative;
+            top: 4px;
+        }
+    }
+
+    img {
+        position: absolute;
+        top: 14px;
+        right: 4px;
+        width: 16px;
+        height: 10px;
+    }
+     
+    .status-dropdown-menu {
+        position: absolute;
+        top: 45px;
+        z-index: 9;
+        background: $dashboard-tile-background;
+        width: 100%;
+        border: 1px solid $ddd-color;
+        left: 15px;
+
+        ul {
+            width: 100%;
+        }
+
+        li {
+            list-style-type: none;
+            font-size: 14px;
+            display: flex;
+            justify-content: flex-start;
+            cursor: pointer;
+            padding: 4px 10px;
+            align-items: center;
+
+            &.active-status {
+                background-color: $select-bg;
+            }
+
+            &:hover {
+                background-color: $ddd-color;
+            }
+        }
+    }
+
+    .Started {
+            background-color: $not-started-status;
+        }
+
+   .Progress {
+            background-color: $inProgress-status;
+        }
+
+    .Completed {
+        background-color: $completed-status;
+    }
+
+    .status-icon {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+    }
+}

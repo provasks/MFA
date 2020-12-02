@@ -1,0 +1,145 @@
+$outer-padding: 0px;
+$outer-background-color: #f4f8fb;
+$dashboard-padding: 20px;
+$dashboard-gutter: 30px;
+$gantt-chart-day-width: 40px;
+
+$table-row-height: 30px;
+
+/*Named color*/
+
+$gray: #cccccc;
+$lightgray: #d3d3d3;
+$black: #000000;
+$white: #ffffff;
+$lightblue: lightblue;
+
+/*Objects color*/
+
+$dashboard-background: #f6f6f6;
+$dashboard-tile-background: $white;
+
+//dependency related
+$dependency: (
+  Start-Start: #ffae42,
+  Start-Finish: #ff1493,
+  Finish-Start: #6a0dad,
+  Finish-Finish: #4b8b3b,
+);
+
+$month: (
+  odd: #f5f5f5,
+  even: #eaecee,
+);
+
+$landing: (
+  hello:  #039cce,
+  login: #3467b8,
+  footer: #a8a8a8
+);
+
+$line-directions: "horizontal", "vertical";
+$arrow-directions: "left", "right";
+$line-thickness: 2px;
+$dependency-shadow: #3d3e3f;
+$dependency-table-header-background: #d2d2d2;
+
+$cards: "Projects", "Teams", "Tasks", "Resources";
+$cards-color: #fc6b02, #b61dce, #27cc27, #3065ab;
+$status: (
+  not-started: #605e5c,
+  in-progress: #327eaa,
+  completed: #418040,
+  late: #d13438,
+);
+$gantt-timeline-month-color: #aaaaaa;
+$gantt-timeline-day-value-color: #565656;
+$gantt-timeline-day-name-color: #6b6b6b;
+$gantt-timeline-day-background-color: #a4dfff;
+$gantt-timeline-today-color: $dashboard-tile-background;
+$gantt-timeline-today-background-color: #039cce;
+$gantt-timeline-bottom-border: #c9c9c9;
+$gantt-handle-background: #464543;
+$gantt-splitter-background: $lightgray;
+$header-color: #565656;
+$header-border-color: #e6e6e6;
+$selcetedRow: #e3e3e3;
+$table-border-color: #e7e7e7;
+$input-bg-color: #f3f2f1;
+$comment-info-color: #515151;
+$comment-date-color: #b2b2b2;
+$comments-card-border: #d9d9d9;
+$custom-control-input-check: #c8c8c8;
+$add-task-action: #929292;
+$input-select-colors: #515151;
+$inpu-focus-color: #6f42c1;
+$ddd-color: #dddddd;
+$last-change-color: #c5c5c5;
+$comments-card-color: #fbfbfb;
+$updateBtnBg: #418040;
+
+/* Loader */
+
+$overlay-background: rgba(74, 74, 74, 0.8);
+$spinner-border: #f3f3f3;
+$spinner-border-top: #0000ff;
+$spinner-border-right: #00ff00;
+$spinner-border-bottom: #ff0000;
+// Tab Style //
+$tab-title-color: #575757;
+$tab-active-color: #039cce;
+// Filter Clear //
+$filter-clear-color: #039cce;
+$filter-bg-color: #f3f2f1;
+$highlighted-row-color: #f4f8fb; //!important;
+$inputBorder-color: #a8a8a8;
+$text-style-popup-class: #192533;
+// Label Color //
+$decactivate-label-check-color: #00000033;
+$label-pink-color: #932b87;
+$label-pink-background: #f5d9f2;
+$label-red-color: #a4262c;
+$label-red-background: #f0d3d4;
+$label-yellow-color: #6d5702;
+$label-yellow-background: #f5edce;
+$label-green-color: #306a0d;
+$label-green-background: #c6e7c6;
+$label-blue-color: #2d5ba1;
+$label-blue-background: #d0e7f8;
+$label-purple-color: #5c2e91;
+$label-purple-background: #e0d4ed;
+$range-point-color: #039cce;
+$range-border-color: #4ac9f2;
+$export-button: #ff6600;
+$export-color: #ffffff;
+$select-bg: #f3f2f1;
+$select-border: #a8a8a8;
+$label-dropdown-boredr: #c7b6b6;
+$tick-mark-color: #d6d6d6;
+$custom-tick-check: #8e8e8e;
+$label-black-color: #575757;
+$label-black-background: #c5c5c5;
+
+$CategoryNames: "category1", "category2", "category3", "category4", "category5", "category6";
+$categoryColors: #932b87, #a4262c, #6d5702, #306a0d, #2d5ba1, #5c2e91;
+$categoryBgColors: #f5d9f2, #f0d3d4, #f5edce, #c6e7c6, #d0e7f8, #e0d4ed;
+
+$project-toolbar-color: #00000029;
+$accent-fill-color: #50a047;
+$accent-buffer-color: #e5e5e5;
+$primary-fill-color: #039cce;
+$warn-fill-color: #ff6600;
+$milestone-color: #858585;
+$progress-color: #515151;
+$percentage-color: #515151;
+$assignee-img-color: #9e9e9e;
+
+$not-started-status: #605e5c;
+$inProgress-status: #327eaa;
+$completed-status: #418040;
+$dependency-boxshadow: #303030;
+$dependency-disabled-color: #404040;
+$dependency-table-header-bg: #f5f5f5;
+$time-estimation-bg: #f0f0f0;
+
+$resource-management-button: #848484;

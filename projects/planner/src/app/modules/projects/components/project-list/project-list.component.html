@@ -1,0 +1,118 @@
+<div class="list-title">
+  <div>My Projects</div>
+  <div class="right">
+    <button mat-button color="primary" data-toggle="modal" data-target="#addProject"
+      [disabled]="!clonedGroups.length">Add Project</button>
+    <button mat-button color="warn" (click)="logout()">Sign Out</button>
+  </div>
+</div>
+
+<div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <app-add-project (onProjectAdd)="onProjectAdded($event)"></app-add-project>
+</div>
+
+<div class="project-list">
+  <div class="groups">
+    <div class="header">
+      <div class="title-bar" *ngIf="!filterBox">
+        <div class="title">Teams</div>
+        <mat-icon (click)="filterBox=true">filter_alt</mat-icon>
+      </div>
+      <div class="filter-bar" *ngIf="filterBox">
+        <input type="text" [(ngModel)]="txtSearch" (keyup)="applyFilter(txtSearch)" placeholder="Filter by team"
+          class="matTableFilterStyle" autocomplete="off">
+        <mat-icon (click)="clearFilter()">close</mat-icon>
+      </div>
+    </div>
+    <div class="group-list">
+      <div class="group" [ngClass]="{'selected':group.selected}" *ngFor="let group of clonedGroups"
+        (click)="reloadPage(group.id, $event)" data-toggle="tooltip" [title]="group.displayName">
+        <div *ngIf="!group.photo" class="logo" [ngStyle]="utility.setUserBg(group.displayName)">
+          {{utility.profileDpName(group.displayName)}}</div>
+        <img *ngIf="group.photo" class="logo"
+          [attr.src]="domSanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + group.photo)"
+          alt="group logo" />
+
+        <div class="name">{{group.displayName}}</div>
+      </div>
+      <button class="float-right" mat-button color="primary" *ngIf="!isAllGroupsLoaded && clonedGroups.length"
+        (click)="loadAllGroups(selectedGroup.id)">More ...</button>
+    </div>
+  </div>
+  <div class="projects">
+    <div class="header">
+      <div class="group-title">{{selectedGroup?.displayName|uppercase}}</div>
+    </div>
+    <div class="row list" *ngIf="projectList && projectList.length" (scroll)="scrollHandler($event)"
+      #projectListContainer>
+      <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 cardTitle" *ngFor="let project of projectList; let i = index;">
+        <mat-card (click)="navigateToProjects(project.id, project.groupId, project.title)">
+          <mat-card-title class="cardTitleFont">{{project.title}}
+          </mat-card-title>
+          <p class="milestone m-0">Milestones Completed: {{project.completedTasks}}/{{project.totalTasks}}</p>
+
+          <div class="row mt-3 mb-2">
+            <!-- chart section start -->
+
+            <div class="col-sm-6">
+              <div id="chart{{i}}"></div>
+              <!-- <div class="tasks-count">
+                  <p class="m-0"> {{ project.totalTasks -  project.completedTasks}} </p>
+                  <p class="m-0">Tasks left</p>
+                </div> -->
+            </div>
+            <div class="col-sm-6">
+              <div class="legend">
+                <div class="status">
+                  <div class="dot completed"></div>
+                  <div class="name">Completed</div>
+                </div>
+                <div class="status">
+                  <div class="dot in-progress"></div>
+                  <div class="name">In Progress</div>
+                </div>
+                <div class="status">
+                  <div class="dot not-started"></div>
+                  <div class="name">Not Started</div>
+                </div>
+                <div class="status">
+                  <div class="dot late"></div>
+                  <div class="name">Late Task</div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- chart section End -->
+          </div>
+
+          <mat-card-content>
+            <div class="preloader" *ngIf="!project.groupMembers">
+              <img src="./../../../../../assets/images/preloader.gif" alt="">
+            </div>
+            <app-user-list [userList]="project.groupMembers" [limit]="6"></app-user-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="!(projectList && projectList.length)" class="no-project">
+      <div class="message">
+        <img src="../../../../../assets/images/no-projects-found.png" alt="No project found">
+        <ng-container *ngIf="loading">
+          <div class="orange">HELLO!!</div>
+          <div>YOUR PROJECTS ARE LOADING...</div>
+        </ng-container>
+        <ng-container *ngIf="!loading && selectedGroup">
+          <div class="orange">OOOOPS! NO PROJECTS</div>
+          <div>AVAILABLE FOR THIS GROUP</div>
+        </ng-container>
+        <ng-container *ngIf="!loading && !selectedGroup">
+          <div class="orange">Hi! SELECT A GROUP</div>
+          <div>TO GET PROJECT LIST</div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

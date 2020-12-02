@@ -1,0 +1,35 @@
+
+@import "../../../../../styles.scss";
+
+.modal-body {
+    .name {
+        input {
+            width: 100%;
+            border: 0;
+            outline: none;
+            font-size: 14px;
+            line-height: 30px;
+            margin-bottom: 15px;
+            &:focus {
+                border-bottom: 2px solid 039cce;
+            }
+        }
+    }
+    .description {
+        textarea {
+            width: 100%;
+            border: 0;
+            outline: none;
+            font-size: 14px;
+            &:focus {
+                border-bottom: 2px solid 039cce;
+            }
+        }
+    }
+}
+.modal-footer {
+    button {
+        background-color: #039cce;
+        color:$white;
+    }
+}

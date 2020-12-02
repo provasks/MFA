@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="139" height="29" viewBox="0 0 139 29">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-4 {
+        stroke: #a4a4a4;
+        stroke-width: 0.5px;
+      }
+
+      .cls-2 {
+        font-size: 12px;
+        font-family: AvenirLTStd-Book, Avenir LT Std;
+      }
+
+      .cls-3 {
+        font-size: 13px;
+        font-family: FontAwesome5Free-Solid, 'Font Awesome 5 Free';
+      }
+
+      .cls-4, .cls-6 {
+        fill: none;
+      }
+
+      .cls-5 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="calander_view_selection" data-name="calander view_selection" transform="translate(-647 -163)">
+    <g id="Rectangle_2249" data-name="Rectangle 2249" class="cls-1" transform="translate(647 163)">
+      <rect class="cls-5" width="139" height="29" rx="3"/>
+      <rect class="cls-6" x="0.25" y="0.25" width="138.5" height="28.5" rx="2.75"/>
+    </g>
+    <text id="_1_Month" data-name="1 Month" class="cls-2" transform="translate(683.448 180.648)"><tspan x="0" y="0">1 Month</tspan></text>
+    <text id="angle-down" class="cls-3" transform="translate(743.134 181.598)"><tspan x="0" y="0">angle-down</tspan></text>
+    <text id="angle-down-2" data-name="angle-down" class="cls-3" transform="translate(778.633 181.098) rotate(-90)"><tspan x="0" y="0">angle-down</tspan></text>
+    <text id="angle-down-3" data-name="angle-down" class="cls-3" transform="matrix(0, -1, -1, 0, 655.633, 181.098)"><tspan x="0" y="0">angle-down</tspan></text>
+    <line id="Line_1944" data-name="Line 1944" class="cls-4" y2="28" transform="translate(672.5 163.5)"/>
+    <line id="Line_1945" data-name="Line 1945" class="cls-4" y2="28" transform="translate(761.5 163.5)"/>
+  </g>
+</svg>

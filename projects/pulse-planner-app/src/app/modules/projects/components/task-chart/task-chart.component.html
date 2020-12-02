@@ -1,0 +1,8 @@
+<div class="task-chart" #taskChart>
+    <app-gantt-calender (calenderDrawn)="onCalenderDrawn($event)"></app-gantt-calender>
+    <div *ngIf="taskList" class="taskList" [ngStyle]="chartStyle">
+
+        <app-dependency *ngIf="showDependency" (closeDependencyModalEmitter)="closeDependency($event)"></app-dependency>
+        <app-gantt-bar [task]="task" [attr.index]="i" [index]="i" *ngFor="let task of taskList; let i = index"></app-gantt-bar>
+    </div>
+</div>

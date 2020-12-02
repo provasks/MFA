@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7.824" height="10.886" viewBox="0 0 7.824 10.886">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3d3d3d;
+      }
+    </style>
+  </defs>
+  <path id="Edit_task_sort" data-name="Edit task_sort" class="cls-1" d="M1.121-4.375A.657.657,0,0,0,.656-3.254L3.913,0A.654.654,0,0,0,4.84,0L8.094-3.254a.657.657,0,0,0-.465-1.121ZM8.094-7.246,4.84-10.5a.654.654,0,0,0-.927,0L.656-7.246a.657.657,0,0,0,.465,1.121H7.629A.657.657,0,0,0,8.094-7.246Z" transform="translate(-0.463 10.693)"/>
+</svg>

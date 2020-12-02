@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="166" height="14" viewBox="0 0 166 14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3d3d3d;
+        font-size: 19px;
+        font-family: FontAwesome5Free-Solid, 'Font Awesome 5 Free';
+      }
+
+      .cls-2 {
+        fill: #d8d8d8;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke: #707070;
+        stroke-width: 0.5px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+
+      .cls-5 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Edit_task_complete_status" data-name="Edit task_complete status" transform="translate(-357.5 -596)">
+    <text id="sort-down" class="cls-1" transform="translate(521.5 608.5) rotate(-90)"><tspan x="0" y="0">sort-down</tspan></text>
+    <text id="sort-down-2" data-name="sort-down" class="cls-1" transform="matrix(0, -1, -1, 0, 359.5, 608.5)"><tspan x="0" y="0">sort-down</tspan></text>
+    <rect id="Rectangle_2167" data-name="Rectangle 2167" class="cls-2" width="113" height="6" rx="3" transform="translate(380 600)"/>
+    <g id="Ellipse_14" data-name="Ellipse 14" class="cls-3" transform="translate(375 596)">
+      <circle class="cls-4" cx="7" cy="7" r="7"/>
+      <circle class="cls-5" cx="7" cy="7" r="6.75"/>
+    </g>
+  </g>
+</svg>

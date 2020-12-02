@@ -1,0 +1,25 @@
+@import "../../../../../styles.scss";
+@import "../../../../contents/scss/assignee.scss";
+
+.no-assignees {
+    background: $dashboard-tile-background;
+    border: 1px solid $ddd-color;
+    width: 360px;
+    height: 80px;
+    padding: 15px;
+    position: absolute;
+    top: -57px;
+}
+.user-list-ul {
+    background: $dashboard-tile-background;
+    border: 1px solid $ddd-color;
+    width: 360px;
+    position: absolute;
+    padding: 15px;
+    z-index: 9;
+    overflow-y: auto;
+
+    > li {
+        list-style-type: none;
+    }
+}

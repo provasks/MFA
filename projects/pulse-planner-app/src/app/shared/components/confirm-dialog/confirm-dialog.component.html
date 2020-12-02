@@ -1,0 +1,11 @@
+<div>
+  <div class="content-container">
+    <mat-icon class="closeIconClass" id="close-icon" (click)="closeDialog()">close</mat-icon>
+    <p class="imgStyleClass"><img src="../../../../assets/images/error.svg" alt="Error" /></p>
+    <p class="content-span full-width textStyleClass">{{data.title}}</p>
+    <p class="content-span full-width imgStyleClass">{{data.message}}</p>
+  </div>
+  <p class="imgStyleClass">
+    <button class="btnContinueClass" mat-flat-button color="warn" [mat-dialog-close]="true">Continue</button>
+  </p>
+</div>

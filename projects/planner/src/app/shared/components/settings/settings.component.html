@@ -1,0 +1,49 @@
+<!-- <head>
+    <script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
+</head> -->
+
+<button (click)= "saveSettings()">save</button>
+
+<!-- <script>
+    microsoftTeams.initialize();
+    let saveGray = () => {
+        microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+            microsoftTeams.settings.setSettings({
+                websiteUrl: "https://yourWebsite.com",
+                contentUrl: "https://yourWebsite.com/gray",
+                entityId: "grayIconTab",
+                suggestedDisplayName: "MyNewTab"
+            });
+            saveEvent.notifySuccess();
+        });
+    }
+    let saveRed = () => {
+        microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
+            microsoftTeams.settings.setSettings({
+                websiteUrl: "https://yourWebsite.com",
+                contentUrl: "https://yourWebsite.com/red",
+                entityId: "redIconTab",
+                suggestedDisplayName: "MyNewTab"
+            });
+            saveEvent.notifySuccess();
+        });
+    }
+
+    let gr = document.getElementById("gray").style;
+    let rd = document.getElementById("red").style;
+
+    const colorClickGray = () => {
+        gr.display = "block";
+        rd.display = "none";
+        microsoftTeams.settings.setValidityState(true);
+        saveGray()
+    }
+
+    const colorClickRed = () => {
+        rd.display = "block";
+        gr.display = "none";
+        microsoftTeams.settings.setValidityState(true);
+        saveRed();
+    }
+</script> -->
+

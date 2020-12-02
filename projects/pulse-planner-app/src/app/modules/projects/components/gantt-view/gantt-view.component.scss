@@ -1,0 +1,195 @@
+@import "./../../../../../styles.scss";
+$margin: 0px;
+.projects {
+    cursor: default;
+    height: 100%;
+    background-color: $dashboard-tile-background;
+    @include vendor-prefix(box-shadow, 0 0 3px rgba(0, 0, 0, 0.35));
+    .add-task-modal,
+    .dependency-modal {
+        max-width: 660px;
+        width: 40%;
+        // border: 1px solid #ccc;
+        height: calc(100vh);
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: $dashboard-tile-background 0% 0% no-repeat padding-box;
+        box-shadow: 0px 8px 9px #00000029;
+        border: 0.4000000059604645px solid #c5c5c5;
+        // display: none;
+        z-index: 99;
+    }
+    .button-panel {
+        position: absolute;
+        right: 3px;
+        top: 4px;
+        // width: 300px;
+        overflow: hidden;
+        height: 48px;
+    }
+    .add-task-btn {
+        background-color: #039cce;
+        color: $dashboard-tile-background;
+        padding: 7px 20px;
+        z-index: 9;
+        margin: 3px 10px;
+        float: right;
+        &:hover {
+            background-color: darken(#039cce, 15%);
+        }
+    }
+    .resource-management {
+        background-color: $resource-management-button;
+        color: $dashboard-tile-background;
+        padding: 7px 20px;
+        z-index: 9;
+        margin: 3px 10px;
+        float: right;
+        img {
+            margin-right: 3px;
+        }
+        &:hover {
+            background-color: darken($resource-management-button, 15%);
+        }
+    }
+    .view-btn {
+        z-index: 9;
+        margin: 10px 14px;
+        float: right;
+        color: #565656;
+        cursor: pointer;
+    }
+    .view-panel {
+        width: 160px;
+        .mat-select {
+            visibility: hidden;
+        }
+    }
+    .edit-task-btn {
+        position: absolute;
+        right: 160px;
+        top: 4px;
+        background: #039cce;
+        color: $dashboard-tile-background;
+        padding: 7px 20px;
+        z-index: 9;
+    }
+    .header {
+        height: 50px;
+        border: 1px solid $lightgray;
+        font-size: 20px;
+        align-items: center;
+        position: relative;
+        z-index: 9;
+    }
+    #container {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 40px);
+        .wrapper {
+            display: flex;
+            width: calc(100% - 2 * #{$margin});
+            height: calc(100% - 50px);
+            margin: 1 $margin;
+            #left_panel,
+            #right_panel {
+                position: relative;
+                width: 80%;
+                // height: 85vh;
+                display: inline-block;
+                // overflow: scroll;
+                overflow-x: scroll;
+                min-width: 100px;
+            }
+            #left_panel {
+                overflow-y: hidden;
+                width: 23%;
+            }
+            #drag {
+                height: 100%;
+                width: 6px;
+                cursor: col-resize;
+                z-index: 1;
+                background-color: $gantt-splitter-background;
+                .handle {
+                    position: relative;
+                    height: 20px;
+                    background: $gantt-handle-background;
+                    top: 50%;
+                    @include vendor-prefix(transform, translateY(-50%));
+                }
+            }
+        }
+        .no-task {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 40px);
+            .message {
+                text-align: center;
+                color: #767676;
+                font-size: 22px;
+                .orange {
+                    color: #d6713c;
+                }
+            }
+        }
+    }
+}
+
+.view-item {
+    padding: 10px;
+    font-size: 16px;
+}
+
+::ng-deep .mat-tab-label {
+    opacity: 1 !important;
+}
+
+.filter-item {
+    cursor: default;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.tableClear {
+    font-size: 12px;
+    color: $filter-clear-color;
+    float: right;
+    cursor: pointer;
+}
+
+.option-list {
+    max-height: 180px;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+.view-label {
+    padding-right: 4px;
+}
+
+.mat-menu-item {
+    outline: none;
+    width: 180px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.export-label {
+    padding-right: 4px;
+    padding-left: 4px;
+}
+
+.export-title {
+    padding-right: 4px;
+    padding-left: 4px;
+    font-size: 14px;
+}
+
+// .export-options {
+//     margin-left: -89px;
+//     margin-top: 15px;
+// }

@@ -1,0 +1,21 @@
+@import './../styles.scss';
+
+.app {
+    padding: $outer-padding $outer-padding 0 $outer-padding;
+    background-color: $outer-background-color;
+    height: 100%;
+}
+
+
+.sessioncard {
+    position: absolute;
+    top: 20%;
+    left: 31%;
+    z-index: 5;
+    transition: opacity .15s linear;
+    border: 1px solid #dee2e6;
+    background: $white;
+}
+.modal-footer {
+    justify-content: center;
+}

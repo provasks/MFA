@@ -1,0 +1,27 @@
+<div class="resource-detail-wrapper" [ngStyle]="popupPosition" (click)="onClick($event)">
+    <div class="pointer" *ngIf="arrowDirectionUp">
+        <div class="arrow up" [ngStyle]="arrowPosition"></div>
+    </div>
+    <div class="resource-detail">
+        <div class="content" *ngIf="assignment">
+            <div class="header">
+                <app-user [user]="assignment.assignee" [showName]="true"></app-user>
+                <div class="date">{{assignment.dateLong}}</div>
+            </div>
+            <div class="tasklist">
+                <div class="task" *ngFor="let task of assignment.tasks">
+                    <div class="title" data-toggle="tooltip" data-placement="bottom" title="{{task.title}}">
+                        {{task.title}}</div>
+                    <div class="hour">{{task.hours.toFixed(2)}}</div>
+                </div>
+                <div class="summary">
+                    <div class="title">Total hours</div>
+                    <div class="hour">{{assignment.totalHours.toFixed(2)}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pointer" *ngIf="!arrowDirectionUp">
+        <div class="arrow down" [ngStyle]="arrowPosition"></div>
+    </div>
+</div>

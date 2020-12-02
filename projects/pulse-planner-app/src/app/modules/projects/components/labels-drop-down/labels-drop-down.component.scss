@@ -1,0 +1,183 @@
+@import "../../../../contents/scss/variables.scss";
+@import "../../../../contents/scss/mixins.scss";
+
+.example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+
+  .labels-dropdown{
+    height: 44px;
+    border: 1px solid $label-dropdown-boredr;
+    border-radius: 4px;
+    background-color: $input-bg-color;
+    position: relative;
+
+    .label-menu-btn {
+        outline: none;
+        width: 100%;
+        text-align: left;
+        box-shadow: none;
+        height: 40px;
+        font-size: 14px;
+        display: flex;
+        justify-content: flex-start;
+
+        img {
+            position: absolute;
+            top: 14px;
+            right: 4px;
+            width: 16px;
+            height: 10px;
+        }
+
+        .category-name {
+            padding: 2px 4px;
+            max-width: 50px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn {
+            // font-size: 20px;
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            right: 20px;
+
+            &.label-save-btn {
+                color: $accent-fill-color;
+            }
+
+            &.label-edit-btn {
+                color: $primary-fill-color;
+            }
+
+            .mat-icon {
+                
+                font-size: 22px;
+                position: absolute;
+                top: -2px;
+                outline: none;
+            }
+        }
+    }
+
+    .label-dropdown-menu {
+        position: absolute;
+        top: 45px;
+        z-index: 9;
+        background: $dashboard-tile-background;
+        width: 100%;
+        border: 1px solid $ddd-color;
+        left: 15px;
+
+        .labels-container li{
+            list-style-type: none;
+            margin: 16px 0 0 0;
+            font-size: 14px;
+            span {
+                padding: 4px 10px;
+                border-radius: 4px;
+            }
+        }
+        .checklist-container li{
+            list-style-type: none;
+            margin: 0;
+            display: flex;
+            span {
+                padding: 4px 10px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    /* Category css using each in sass */
+    @each $label in $CategoryNames {
+        $i: index($CategoryNames, $label);
+
+        .#{$label} {
+            background-color: nth($categoryBgColors, $i);
+            color: nth($categoryColors, $i);
+            border-radius: 4px;
+        }
+    }
+    /* Category css using each in sass */
+
+    .label-name {
+        cursor: pointer;
+        position: relative;
+        top: 12px;
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+  }
+/* custom check box styles */
+  .custom-control-input:checked~.custom-control-label::before {
+    background: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 2px;
+    @include customLabelStyle;
+}
+.custom-control-label::after {
+    border-bottom: 2px solid $tick-mark-color;
+    border-left: 2px solid $tick-mark-color;
+    transform: rotate(-45deg);
+    top: 20px !important;
+    position: absolute;
+    left: -20px;
+    width: 14px !important;
+    height: 7px !important;
+    background-image: none;
+    cursor: pointer;
+}
+
+.label-checkbox .custom-control-input:checked~.custom-control-label::after {
+    border-bottom: 2px solid $custom-tick-check;
+    border-left: 2px solid $custom-tick-check;
+}
+
+.label-checkbox .custom-control-label::before {
+    border: none;
+}
+
+.custom-control-label {
+    top: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.checkbox-container {
+    // max-width: 40px;
+    width: 100%;
+}
+
+.custom-control-input:focus~.custom-control-label::before{
+    box-shadow: none;
+}
+
+
+.custom-control-input:not(:disabled):active~.custom-control-label::before,
+.custom-control-input:not(:disabled)~.custom-control-label::before {
+    background: none;
+    display: none;
+}
+
+.more-label {
+    background-color: $label-black-background;
+    color: $label-black-color;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.label-input {
+    height: 26px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: 9px;
+}

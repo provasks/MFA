@@ -1,0 +1,68 @@
+@import "../../../../../styles.scss";
+
+.landing {
+  height: 100%;
+  > div {
+    height: 100%;
+    .left {
+      background-image: url("../../../../../assets/images/Landing_Page_BG.jpg");
+      background-repeat: no-repeat;
+      background-position: 30%;
+      background-size: cover;
+    }
+    .right {
+      font-size: 1em;
+      .content {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: calc(100% - 30px);
+        .hello {
+          color: map-get($map: $landing, $key: hello);
+          font-size: 1em;
+        }
+        .welcome {
+          font-size: 20px;
+        }
+        .info {
+          span {
+            font-weight: 600;
+          }
+          text-align: justify;
+          text-justify: inter-word;
+          margin: 15px 0;
+        }
+        .login {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          border: 1px solid map-get($map: $landing, $key: login);
+          color: $white;
+          width: 250px;
+          background-color: map-get($map: $landing, $key: login);
+          img {
+            padding: 10px;
+            background-color: $white;
+          }
+          div {
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+          }
+        }
+      }
+      .footer {
+        color: map-get($map: $landing, $key: footer);
+        position: absolute;
+        bottom: 12px;
+        width: calc(100% - 30px);
+        font-size: 12px;
+        a {
+          color: map-get($map: $landing, $key: footer);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

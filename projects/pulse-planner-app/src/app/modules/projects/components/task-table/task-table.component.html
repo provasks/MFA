@@ -1,0 +1,307 @@
+<table class="task-table" #tasktable>
+    <thead>
+        <tr>
+            <th scope="col" class="tasks">
+                <span class="tasktitle">Tasks</span>
+                <span class="taskcount" *ngIf=" rowData ">({{rowData.length}})</span></th>
+            <th scope="col" class="bucket" *ngIf="selectedColumns?.indexOf('bucket')>=0">
+
+                <span class="columntitle" (click)="bucket.toggle()">
+                    <mat-label>Bucket</mat-label>
+                    <div *ngIf="filterPaneOpened[0]" class="arrow up"></div>
+                    <div *ngIf="!filterPaneOpened[0]" class="arrow down"></div>
+                </span>
+
+                <div class="view-panel">
+                    <mat-select multiple #bucket [(ngModel)]="selectedBucketValue"
+                        (selectionChange)="onFilterChange($event,'bucket')" (openedChange)="viewFilterPane($event, 0)"
+                        disableOptionCentering panelClass="filterPanel">
+                        <div class="filter-item">
+                            <span>Filter</span>
+                            <span class="tableClear" (click)="clear('bucket') "> Clear</span>
+                        </div>
+
+
+                        <div class="option-list">
+                            <mat-form-field appearance="outline">
+                                <input matInput (keyup)="applyFilterBucket($event.target.value)" autocomplete="off"
+                                    placeholder="Filter by keyword" class="matTableFilterStyle">
+                            </mat-form-field>
+                            <ng-container *ngIf="filterBucketList.length>0">
+                                <mat-option *ngFor="let item of filterBucketList" [value]="item">{{item}}</mat-option>
+                            </ng-container>
+                        </div>
+
+                    </mat-select>
+                </div>
+            </th>
+            <th scope="col" class="date" *ngIf="selectedColumns?.indexOf('start date')>=0">
+                <span class="columntitle" (click)="startDate.toggle()">
+                    <mat-label>Start Date</mat-label>
+                    <div *ngIf="filterPaneOpened[0]" class="arrow up"></div>
+                    <div *ngIf="!filterPaneOpened[0]" class="arrow down"></div>
+                </span>
+
+                <div class="view-panel">
+                    <mat-select multiple #startDate [(ngModel)]="selectedStartDateValue"
+                        (selectionChange)="onFilterChange($event,'startDate')"
+                        (openedChange)="viewFilterPane($event, 1)" disableOptionCentering panelClass="filterPanel">
+                        <div class="filter-item">
+                            <span>Filter</span>
+                            <span class="tableClear" (click)="clear('startDate') "> Clear</span>
+                        </div>
+
+
+                        <div class="option-list">
+                            <mat-form-field appearance="outline">
+
+                                <input matInput [matDatepicker]="picker"
+                                    (dateChange)="applyFilterStartDate( 'change', $event.target.value) "
+                                    (keyup)="applyFilterStartDate( 'keyup',$event.target.value)" autocomplete="off"
+                                    placeholder="Choose a date " class="matTableFilterStyle ">
+                                <mat-datepicker-toggle matSuffix [for]="picker ">
+                                    <mat-icon matDatepickerToggleIcon>
+                                        <img src="../../../../../assets/icons/callendericon.png"
+                                            alt="arrow down icon" />
+                                    </mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+
+                            </mat-form-field>
+                            <ng-container *ngIf="startDateList.length>0">
+                                <mat-option *ngFor="let item of startDateList " [value]="item ">
+                                    {{item|date:'MM/dd/yyyy'}}
+                                </mat-option>
+                            </ng-container>
+                        </div>
+
+                    </mat-select>
+                </div>
+            </th>
+            <th scope="col" class="date " *ngIf="selectedColumns?.indexOf( 'end date')>=0">
+                <span class="columntitle" (click)="endDate.toggle()" style="height: 100%; display: block;">
+                    <mat-label>End Date</mat-label>
+                    <div *ngIf="filterPaneOpened[0]" class="arrow up"></div>
+                    <div *ngIf="!filterPaneOpened[0]" class="arrow down"></div>
+                </span>
+                <div class="view-panel">
+                    <mat-select multiple #endDate [(ngModel)]="selectedEndDateValue"
+                        (selectionChange)="onFilterChange($event,'endDate')" (openedChange)="viewFilterPane($event, 2)"
+                        disableOptionCentering panelClass="filterPanel">
+                        <div class="filter-item">
+                            <span>Filter</span>
+                            <span class="tableClear" (click)="clear('endDate') "> Clear</span>
+                        </div>
+                        <div class="option-list">
+                            <mat-form-field appearance="outline">
+                                <input matInput [matDatepicker]="picker" autocomplete="off"
+                                    (dateChange)="applyFilterEndDate( 'change', $event.target.value) "
+                                    (keyup)="applyFilterEndDate( 'keyup',$event.target.value)"
+                                    placeholder="Choose a date " class="matTableFilterStyle ">
+
+
+                                <mat-datepicker-toggle matSuffix [for]="picker">
+                                    <mat-icon matDatepickerToggleIcon>
+                                        <img src="../../../../../assets/icons/callendericon.png"
+                                            alt="arrow down icon" />
+                                    </mat-icon>
+                                </mat-datepicker-toggle>
+
+                                <mat-datepicker #picker></mat-datepicker>
+
+                            </mat-form-field>
+                            <ng-container *ngIf="endDateList.length > 0">
+                                <mat-option class="options" *ngFor=" let item of endDateList " [value]="item ">
+                                    {{item|date:'MM/dd/yyyy'}}
+                                </mat-option>
+                            </ng-container>
+                        </div>
+
+                    </mat-select>
+                </div>
+            </th>
+            <th scope="col" class="assignee " *ngIf="selectedColumns?.indexOf( 'assignee')>=0">
+                <span class="columntitle" (click)="assignee.toggle()" style="height: 100%; display: block">
+                    <mat-label>Assignee</mat-label>
+                    <div *ngIf="filterPaneOpened[0]" class="arrow up"></div>
+                    <div *ngIf="!filterPaneOpened[0]" class="arrow down"></div>
+                </span>
+                <div class="view-panel">
+                    <mat-select multiple #assignee [(ngModel)]="selectedAssigneeValue"
+                        (selectionChange)="onFilterChange($event,'assignee')" (openedChange)="viewFilterPane($event, 3)"
+                        disableOptionCentering panelClass="filterPanel">
+                        <div class="filter-item">
+                            <span>Filter</span>
+                            <span class="tableClear" (click)="clear('assignee') "> Clear</span>
+                        </div>
+
+                        <div class="option-list">
+                            <mat-form-field appearance="outline">
+                                <input matInput (keyup)="applyFilterAssignee($event.target.value)" autocomplete="off"
+                                    placeholder="Filter by keyword" class="matTableFilterStyle">
+                            </mat-form-field>
+                            <ng-container *ngIf="filterAssigneeList.length>0">
+                                <mat-option *ngFor="let item of filterAssigneeList " [value]="item">{{item}}
+                                </mat-option>
+                            </ng-container>
+                        </div>
+
+                    </mat-select>
+                </div>
+            </th>
+            <th scope="col" class="label" *ngIf="selectedColumns?.indexOf('label')>=0">
+
+                <span class="columntitle">
+                    <!-- <span class="columntitle" (click)="label.toggle()"> -->
+                    <mat-label>Label</mat-label>
+                    <!-- <div *ngIf="filterPaneOpened[0]" class="arrow up"></div>
+                    <div *ngIf="!filterPaneOpened[0]" class="arrow down"></div> -->
+                </span>
+                <div class="view-panel">
+                    <mat-select multiple #label [(ngModel)]="selectedLabelValue"
+                        (selectionChange)="onFilterChange($event,'label')" (openedChange)="viewFilterPane($event, 4)"
+                        disableOptionCentering panelClass="filterPanel">
+                        <div class="filter-item">
+                            <span>Filter</span>
+                            <span class="tableClear" (click)="clear('label')"> Clear</span>
+                        </div>
+                        <div class="option-list">
+                            <mat-form-field appearance="outline">
+                                <input matInput (keyup)="applyFilterLabel($event.target.value)" autocomplete="off"
+                                    placeholder="Filter by keyword" class="matTableFilterStyle">
+                            </mat-form-field>
+                            <ng-container *ngIf="allLabelList.length>0">
+
+                                <mat-option *ngFor="let item of allLabelList" [value]="item">{{item}}</mat-option>
+                            </ng-container>
+                        </div>
+                    </mat-select>
+                </div>
+            </th>
+            <th scope="col" class="action-list"></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="rowData">
+        <ng-container *ngFor="let task of rowData ; let i = index">
+            <tr (click)="setClickedRow(i)" [class.active]="i == selectedRow" [class]="task.relation" [id]="task.id"
+                [attr.relation]="task.hierarchy">
+                <td>
+                    <div *ngFor="let box of getBoxes(task.relation)">&nbsp;&nbsp;&nbsp;</div>
+                    <div *ngIf="task.hierarchy==='parent'">
+                        <div class="arrow collapse" *ngIf="!task.expanded" (click)="doExpandCollapse(task)"></div>
+                        <div class="arrow expand" *ngIf="task.expanded" (click)="doExpandCollapse(task)"></div>
+                    </div>
+                    <span data-toggle="tooltip" [title]="task.title">
+                        {{task.title}}
+                    </span>
+                </td>
+                <td *ngIf="selectedColumns?.indexOf('bucket')>=0">
+                    <span data-toggle="tooltip" [title]="task.bucket">
+                        {{task.bucket}}
+                    </span>
+                </td>
+                <td *ngIf="selectedColumns?.indexOf('start date')>=0">
+                    <span data-toggle="tooltip" [title]="task.startMoment|date:'MM/dd/yyyy'">
+                        {{task.startMoment|date:'MM/dd/yyyy'}}
+                    </span>
+                </td>
+                <td *ngIf="selectedColumns?.indexOf('end date')>=0">
+                    <span data-toggle="tooltip" [title]="task.dueMoment|date:'MM/dd/yyyy'">
+                        {{task.dueMoment|date:'MM/dd/yyyy'}}
+                    </span>
+                </td>
+                <td *ngIf="selectedColumns?.indexOf('assignee')>=0">
+                    <app-user-list [userList]="task.assignees" [limit]="3"></app-user-list>
+                </td>
+                <td *ngIf="selectedColumns?.indexOf('label')>=0">
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category1')) >= 0"
+                        class="labelPink">{{getLabelName('category1')}}</span>
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category2')) >= 0"
+                        class="labelRed">{{getLabelName('category2')}}</span>
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category3')) >= 0"
+                        class="labelYellow">{{getLabelName('category3')}}</span>
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category4')) >= 0"
+                        class="labelGreen">{{getLabelName('category4')}}</span>
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category5')) >= 0"
+                        class="labelBlue">{{getLabelName('category5')}}</span>
+                    <span
+                        *ngIf="task.labelColumnColorArr && task.labelColumnColorArr.indexOf(getLabelName('category6')) >= 0"
+                        class="labelPurple">{{getLabelName('category6')}}</span>
+                    <span *ngIf="task.labelColorArr && task.labelColorArr.length > 2"
+                        class="labelBlack">{{task.labelColorArr.length - 2}}+</span>
+                </td>
+                <td>
+
+                </td>
+                <div class="actions">
+                    <span (click)="editTaskData(task)"
+                        *ngIf="utility.isActionAllowed(utility.restrictedActions.EditTask)">
+                        <img src="../../../../../assets/icons/edit.png" alt="Edit">
+                    </span>
+                    <ng-container *ngIf="utility.isActionAllowed(utility.restrictedActions.DeleteTask)">
+                        <span (click)="deleteTaskDetail(task)">
+                            <img src="../../../../../assets/icons/bin.png" alt="Delete">
+                        </span>
+                    </ng-container>
+
+                    <span [matMenuTriggerFor]="menu">
+                        <img src="../../../../../assets/icons/moreicon.png" alt="More">
+                        <mat-menu #menu="matMenu">
+                            <ng-container *ngIf="utility.isActionAllowed(utility.restrictedActions.AddChildTask)">
+                                <button mat-menu-item (click)="addTaskDataModal(task)">Add Child Task
+
+                                </button>
+                            </ng-container>
+                            <button mat-menu-item [matMenuTriggerFor]="labels"> Label</button>
+                            <ng-container *ngIf="utility.isActionAllowed(utility.restrictedActions.AddDependency)">
+                                <button mat-menu-item *ngIf="task.hierarchy != 'parent'"
+                                    (click)="addDependency(task)">Add Dependency</button>
+                            </ng-container>
+                            <ng-container *ngIf="utility.isActionAllowed(utility.restrictedActions.DeleteTask)">
+                                <button mat-menu-item (click)="deleteTaskDetail(task)">Delete Task</button>
+                            </ng-container>
+                        </mat-menu>
+                        <mat-menu #labels="matMenu">
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelPink">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelPink">done</mat-icon>
+                                <span class="labelPink">{{getLabelName('category1')}}</span>
+                            </button>
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelRed">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelRed">done</mat-icon>
+                                <span class="labelRed">{{getLabelName('category2')}}</span>
+                            </button>
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelYellow">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelYellow">done</mat-icon>
+                                <span class="labelYellow">{{getLabelName('category3')}}</span>
+                            </button>
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelGreen">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelGreen">done</mat-icon>
+                                <span class="labelGreen">{{getLabelName('category4')}}</span>
+                            </button>
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelBlue">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelBlue">done</mat-icon>
+                                <span class="labelBlue">{{getLabelName('category5')}}</span>
+                            </button>
+                            <button mat-menu-item class="mb-1">
+                                <mat-icon class="deactivateCrossIcon" *ngIf="!task.allLabelPurple">done</mat-icon>
+                                <mat-icon *ngIf="task.allLabelPurple">done</mat-icon>
+                                <span class="labelPurple">{{getLabelName('category6')}}</span>
+                            </button>
+                        </mat-menu>
+                    </span>
+                </div>
+
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

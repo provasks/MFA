@@ -1,0 +1,11 @@
+<div [ngClass]="('user-component' + (showName?' name':'') )">
+    <div class="short-name" *ngIf="!user.photo" data-toggle="tooltip" data-placement="bottom"
+        title="{{user.displayName || user.name}}" [ngStyle]="utility.setUserBg(user.displayName || user.name)">
+        {{utility.profileDpName(user.displayName || user.name)}}</div>
+    <img class="photo" *ngIf="user.photo" data-toggle="tooltip" data-placement="bottom"
+        title="{{user.displayName || user.name}}"
+        [attr.src]="domSanitizer.bypassSecurityTrustResourceUrl('data:image/png;base64,' + user.photo)"
+        alt="user icon" />
+    <!-- <div class="name" *ngIf="showName"> {{ (user.displayName || user.name).replace("(Trianz)","")}} </div> -->
+    <div class="name" *ngIf="showName"> {{user.displayName || user.name}} </div>
+</div>

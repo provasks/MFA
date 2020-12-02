@@ -1,0 +1,27 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add Project</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <mat-icon aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="name">
+        <div class="label">Project name</div>
+        <input matInput type="text" [(ngModel)]="project.name" autocomplete="off"
+          placeholder="Letter, numbers and spaces are allowed." required>
+      </div>
+
+      <!-- <div class="description">
+        <div class="label">Description</div>
+        <textarea matInput type="text" [(ngModel)]="project.description" autocomplete="off"
+          placeholder="Help others find the right project by providing the description."></textarea>
+      </div> -->
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" (click)="addProject()" [disabled]="!project.name">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="status-dropdown">
+    <button type="button" class="btn status-menu-btn" (click)="openLabelMenu()">
+        <span [ngClass]="selectedStatus" class="status-icon mx-1"> </span>
+        <span class="status-name"> {{selectedStatus}} </span>
+        <img src="../../../../../assets/icons/arrowDown.png" alt="arrow down" class="float-right" />
+    </button>
+    <div class="row status-dropdown-menu" *ngIf="isOpenMenu">
+      <div class="col-md-12 p-0">
+        <ul class="status-dropdown-container p-0 m-0">
+          <li *ngFor="let labelValue of progressList; let i = index" class="m-0" [ngClass]="{'active-status': labelValue == selectedStatus}" (click)="changeStatus($event)">
+            
+            <span [ngClass]="labelValue" class="status-icon"> </span>
+            <label class="label-name px-2 mt-2" for="labelListCheck{{i}}">
+              {{ labelValue }}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

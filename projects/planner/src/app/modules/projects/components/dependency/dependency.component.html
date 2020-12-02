@@ -1,0 +1,26 @@
+<div class="dependency-wrapper" [ngStyle]="position" *ngIf="dependency">
+    <div class="pointer">
+        <div class="arrow" [ngStyle]="arrowPosition"></div>
+    </div>
+    <div class="dependency">
+        <table>
+            <tr>
+                <th scope="col">Predecessor</th>
+                <th scope="col">Successor</th>
+                <th scope="col">Dependent Type</th>
+            </tr>
+            <tr>
+                <td data-toggle="tooltip" [title]="dependency.drawingInfo.predecessor.title">
+                    {{dependency.drawingInfo.predecessor.title}}</td>
+                <td data-toggle="tooltip" [title]="dependency.drawingInfo.successor.title">
+                    {{dependency.drawingInfo.successor.title}}</td>
+                <td class="type">
+                    <div class="value">{{dependency.dependencyType}}</div>
+                    <div class="bin" (click)="deleteDependancy(dependency.id, $event)">
+                        <img src="./../../../../../assets/icons/bin-01.png" alt="">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

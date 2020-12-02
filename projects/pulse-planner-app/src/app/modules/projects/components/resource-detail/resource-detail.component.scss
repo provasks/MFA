@@ -1,0 +1,93 @@
+@import "./../../../../../styles.scss";
+
+$date-width: 150px;
+$photo-height: 36px;
+$opacity: 1;
+
+.resource-detail-wrapper {
+    width: 350px;
+    position: absolute;
+    z-index: 12;
+    left: 200px;
+    font-size: 13px;
+    @include vendor-prefix("transition", left 1s);
+
+    .pointer {
+        display: flex;
+        justify-content: center;
+        .arrow {
+            position: relative;
+            width: 0;
+            height: 0;
+            &.down {
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 13px solid $header-color;
+            }
+            &.up {
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-bottom: 13px solid $header-color;
+            }
+        }
+    }
+    .resource-detail {
+        border: 10px solid $header-color;
+        .content {
+            box-shadow: 1px 1px 3px 1px $dependency-shadow;
+            // padding: 2px 8px;
+            .header {
+                display: flex;
+                background-color: $white;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 5px;
+
+                .date {
+                    line-height: $photo-height;
+                    text-align: right;
+                    width: auto;
+                    white-space: nowrap;
+                }
+            }
+            .tasklist {
+                opacity: $opacity;
+                background-color: $header-color;
+                color: $white;
+                .task {
+                    display: flex;
+                    border: 1px solid lighten($header-color, 15%);
+                    border-top: none;
+                    .title {
+                        width: 80%;
+                        padding: 4px 5px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .hour {
+                        text-align: right;
+                        width: 20%;
+                        padding: 4px 5px;
+                    }
+                }
+            }
+            .summary {
+                background-color: darken($header-color, 15%);
+                border: 1px solid lighten($header-color, 15%);
+                border-top: none;
+                display: flex;
+                font-weight: 600;
+                .title {
+                    width: 80%;
+                    padding: 4px 5px;
+                }
+                .hour {
+                    text-align: right;
+                    width: 20%;
+                    padding: 4px 5px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<p *ngIf="noAssigneeFlag" class="no-assignees"> <b>We didn't find any matches </b> </p>
+<ul class="user-list-ul" id="userListAssign" *ngIf="!noAssigneeFlag">
+  
+    <li class="user-list py-1 px-2" *ngFor="let assignee of usersList; let i = index;">
+        <button type="button"  class="btn btn-link assign-list p-0" (click)="addComments(assignee)"> 
+            <app-user [user]="assignee" [showName]="true"></app-user>
+        </button>
+    </li>
+</ul>

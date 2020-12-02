@@ -1,0 +1,6 @@
+<div class="{{task?.relation}} bar-container" [id]="task?.id" [attr.hirarchy]="task?.hierarchy">
+    <div class="gantt-bar {{status}}" [ngStyle]="style" data-toggle="tooltip" [title]="task?.status|uppercase">
+        {{task?.status|uppercase}}
+        <mat-icon class="hamburger" *ngIf="task?.hierarchy==='parent'">menu</mat-icon>
+    </div>
+</div>

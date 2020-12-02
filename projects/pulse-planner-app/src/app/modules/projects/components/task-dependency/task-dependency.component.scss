@@ -1,0 +1,11 @@
+@import "../../../../../styles.scss";
+
+.modal-heading-text {
+    color: $header-color;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

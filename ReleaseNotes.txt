@@ -1,0 +1,388 @@
+********************************************************
+*                    31th Nov, 2020                    *
+********************************************************
+1. Project detail page 
+   a. Height adjustment
+   b. Handled error for labelDropDown
+2. Project list page
+   a. Updated style for the logout button
+
+********************************************************
+*                    30th Nov, 2020                    *
+********************************************************
+1. Landing page - 
+   a. Made Responsive.
+   b. Removed inline styles.
+   c. All classes are in SCSS.
+   d. Mouse pointer should be normal after the login button.
+2. Project listing page
+   a. User list should be displayed in multiple lines if the width is too short.
+   b. Made Responsive
+   c. Implemented Legend using HTML
+   d. Implemented Tasks Left using D3
+   e. Fixed Task Left alignment
+   f. Task left should be displayed as zero padded two digits.
+
+
+
+********************************************************
+*                    24th Nov, 2020                    *
+********************************************************
+1. Reduced empty space around Vertical Assignee list.
+2. Removed the black border appeared after selecting any assinee from the list.
+3. Fixed the layout break issue after selecting only one assignee in the Add task window.
+4. Used user-list component to add assignee in the Add Task popup
+5. Used User component in the assigned list in the Add Task popup
+6. Used User component in the Unassigned list in the Add Task popup
+5. Used user-list component to add assignee in the Edit Task popup
+6. Used User component in the assigned list in the Edit Task popup
+7. Used User component in the Unassigned list in Edit Add Task popup
+8. Used User component to show the person who created the task in Edit Add Task popup
+9. Used User component to show the person who commented for the task in Edit Add Task popup.
+10. Added pointer cursor for file attachment
+11. Removed tooltip after selecting an Assinee from unassined list
+12. Used User component in the Resource detail popup.
+13. Fixed alignment issue in the Resource Detail popup.
+14. Updated User component so that it will show the User's name in the available space only with ellipsis.
+
+
+********************************************************
+*                    18th Nov, 2020                    *
+********************************************************
+   planner
+   --------
+   1. Set background color for the Month in the Calender,
+   2. Month should aligned in the middle    
+   3. Up and Down arrow in the task table header issue is fixed in the PNG Export.
+   4. Stopped filtering for the Label column
+   5. Two lines in column assignee issue is fixed.
+
+   Pulse-Planner
+   -------------
+   1. Merged the above changes with Pulse-Planner
+   2. Removed favicon, styles.css and older browser versions built resources as we are not using these resources.
+   3. Removed the folder site and it contents.
+   4. added the site folder in the gitignore
+    
+
+17th Nov 2020 -
+-------------------------------------------------------
+Planner
+============
+1. Updated the dev environment for Planner.
+2. Updated angular.json
+3. Removed userDefault icon
+
+Resource Details
+=================
+1. Updated the unique style for user
+
+Add-Edit screen
+   1. Issue fixed when Label name is undefined
+   2. Updated the unique style in the comment area 
+
+Pulse-Planner-APP
+================= 
+1. Issue fixed when Label name is undefined
+
+
+
+16th Nov 2020 -
+-------------------------------------------------------
+Planner-App
+============
+Unique style - 
+   1. Rounded photo with border if photo is available
+   2. Two letter name if photo is not available if photo is not available
+   3. on hover the photo or two letter name, the full name should be displayed as tooltip.
+   4. if the list contains only one assignee then his/her name should be diplayed along with photo
+
+Add-Edit screen
+   1. Unique style for the List of assignees at task adding
+   2. Unique style for the list of assignees at Task Editing
+   3. Unique style for the list assigned and unassigned list for both Task Adding and Editing.
+
+Resource Management
+   1. Unique style for the List of assignees at task adding.
+
+Dependency Details
+   1. Recycle bin icon should be displayed.
+
+Pulse-Planner-APP
+================= 
+1. Implemented the above all features for the Pulse-Planner-APP.
+
+
+12th Nov 2020 -
+-------------------------------------------------------
+
+11th Nov 2020 -
+-------------------------------------------------------
+
+10th Nov 2020 -
+-------------------------------------------------------
+
+9th Nov 2020 -
+-------------------------------------------------------
+1. fixed redundant calling
+2. Back funtion should work properly for Web Component
+3. Fixed the 404 error for Planner
+4. handled groupId with Planner app.component
+5. Loader image should be disappear after loading project list
+6. After back from the project detail page, the previous group should be selected.
+
+7th Nov 2020 -
+-------------------------------------------------------
+1. Updated loader
+2. Fixed the image issues (delete , resource management)
+
+6th Nov 2020 -
+-------------------------------------------------------
+1. updated the build elements
+2. The loader image should hide after completing all api request
+3. using the key pmPlannerAccessToken to store Token
+4. Removed Signout from Project List page
+
+5th Nov 2020 -
+-------------------------------------------------------
+1. made some environment changes
+2. Made same key to store the token as Pulse
+3. fixed the position of the dependency detail popup
+4. The loader image should not be displayed if any error comes from API
+
+4th Nov 2020 -
+-------------------------------------------------------
+1. Removed landing component from Pulse-planner-app ...
+2. Corrected the path of node_modules
+3. Removed the unnecessary curly brackets from both planner and Pulse-Planner
+4. Commented ngZone from Pulse-Planner
+5. Updated the routing for Pulse-Planner
+6. Removed Session Card from Pulse-Planner
+7. Commented Shadow dom from Pulse-Planner
+8. User profile should be loaded in Pulse-Planner
+9. Added favicon, Loader and bootstrap library into the project Site
+10. Added Environment based building script for both Planner and Pulse-Planner
+11. Added favicon into site
+12. User profile should be loaded for Planner and Pulse-Planner
+13. resolved calender broken issue
+14. Resolved the month width issue
+15. Fixed month width issue in the Calender top
+16. Fixed the Month displaying issue in the Gantt-Calender
+
+3rd Nov 2020 -
+-------------------------------------------------------
+1. added sample app for R&D
+
+2nd Nov 2020 -
+-------------------------------------------------------
+1. app runing in the shadow dom
+2. removed all hard-coded imports
+3. fixed error in the Pulse-Planner-App
+4. Remove the project Pulse-Planner from the workspace
+5. Added Planner resources into the Project Pulse-Planner-App
+6. Added new project Pulse-Planner-App
+
+1st Nov 2020 -
+-------------------------------------------------------
+1. added project Pulse-Planner as a copy of the Project Planner
+2. Project Planner is running with Dev mode
+
+31st Oct 2020 -
+-------------------------------------------------------
+1. Added assets and bootrapping
+
+30th Oct 2020 -
+-------------------------------------------------------
+1. Added Assets
+2. successfully creating web component with dummy data
+3. Initial setup for web-component
+4. fixed spelling mistakes
+
+29th Oct 2020 -
+-------------------------------------------------------
+1. Made task created information independent from comments.
+2. Group logo photo issue is resoleved
+3. The button "More ..." should not be visible if there is no record.
+4. Implemented Back functionalities in the Project listing page.
+5. Moved the back button from Project Listing page to Gantt-View page.
+
+23nd Oct 2020 -
+-------------------------------------------------------
+1. Availability Table of the REsource Management should work in both Planner and Pulse.
+2. Displaying photo of the person who commented
+3. Displaying photo and name of the person who created the task.
+
+22nd Oct 2020 -
+-------------------------------------------------------
+1. Hours per day should be reflected properly in hte Resource Management ...
+2. Label should be updated in AddEditTask
+3. The updated Labels should be displayed in the task table
+4. Should be redirect into the login page if getting token silently method fails.
+5. After adding a new Task or updating an existing task the Resourcs should be updated.
+6. Requsting silently and restoring the token after expiry. 
+7. The button Add Project should be disabled if there are no group/team.
+8. logged in user's photo should be displayed for each comment.
+9. Moved few methods in common area to reuse from different components
+10. Corresponding photo should be displayed who commented.
+
+21st Oct 2020 -
+-------------------------------------------------------
+1. The corresponding bars will be displayed in the Chart based on the filtered tasks
+2. The Background Grid will be displayed in the Chart based on the Filtered Tasks
+3. The Dependencies will be redrawn based on the filtered tasks.
+4. Dependencies should be drawn properly depending on the filtered Tasks.
+5. Fixed the assignee filtering issue (no assignees was displaying after entering some text in the filter textbox).
+6. Handled Expansion of all parent tasks after task filtering to ensure that Task Table and Gantt Chart are same height.
+7. Requsting silently and restoring the token after expiry.
+
+20th Oct 2020 -
+-------------------------------------------------------
+1. Implemented Guard on Projects route.
+2. Implemented configuarable common Confirm dialogue.
+3. Project Listing page
+   a. Fixed duplicate photo issue for group members.
+   b. The issue "Same logo for all groups and same photo all group members" is fixed.
+   c. Loader should not show at the time of loading the group logo and group members.
+   d. Updated the text for the More button in the group list.
+   e. Used the common Confirm Dialoge for Signout.
+
+
+19th Oct 2020 -
+-------------------------------------------------------
+1. multiple tooltip on click of group issue is fixed.
+2. Implemented displaying loading image for Group Member
+3. Optimized TaskTable and Gantt chart.
+4. Buckets and assignee list are loading asynchronously.
+5. List of assignees should be displayed in the Task Table.
+6. Assignees filter popup should be displayed.
+7. Updated with latest favicon
+8. Implemented loader for Group members photo for all Projects for a perticular group.
+9. Implemented Pagination for Teams
+10. Made page size configuarable.
+11. Team's logo is loading asynchronously.
+12. Team member's photo is loading asynchronously
+13. Storing Teams in stroage
+14. Storing group members in storage.
+15. Displaying the stored Groups, Group Logo and Group members.
+
+
+
+
+16th Oct 2020 -
+-------------------------------------------------------
+1. Handled error in the Loader interceptor.
+2. Landing page:
+   a. Removed the white background color from the text area.
+   b. Changed the Content in the Text Area.
+   c. Updated some styles.
+   d. Updated the background image.
+   e. Set Text-Align style as justify for better look and feel.
+3. Project Listing page:
+   a. Storing group info into sessionStorage to improve performance.
+   b. Using the storage data if user back from any project page.
+4. Updated the Project title as 'Trianz Pulse - Planner Pro' for all environment.
+5. Fixed the Task Table and Gantt chart alignment issue.
+6. Handled Token expiry.
+7. Authentication code cleanup.
+
+
+
+15th Oct 2020 -
+-------------------------------------------------------
+1. Special effects (Bootstrap ) on the tooltip.
+2. Bucket filtering
+3. Assignee filtering popup is not displaying
+4. Add Project api integration
+5. Auto-Refreshing the project list after adding a new project.
+6. Consoled different event for the login workflow.
+7. Calender and Task Table mis-alignment for some projects.
+8. Group images are not displaying
+9. Added round border for each group member image.
+10. Replaced buttons caption in the Listing page title bar
+11. Included the profile information.
+
+
+
+14th Oct 2020 -
+-------------------------------------------------------
+1. Handled the Task loading issue (showing Former member as displayText).
+2. Estimated time should be displayed
+3. User should be able to put Time Estimation for assignees.
+4. Updated style of the Task-Chart (removed left and top border)
+
+5. Added 'Add' button at the right-top corner in the project list page.
+6. Updated the Styles of the header.
+7. Created a AddProject component.
+8. Decorated the AddProject component with necessary objects.
+9. OnClick of the AddProject button AddProject component should be poped up.
+10. Implemented validations in the AddProject popup.
+11. Fixed the login/logout/token auto updating issues are fixed. 
+
+
+13th Oct 2020 -
+-------------------------------------------------------
+1. Task table and Gantt Chart alignement issue is resolved.
+2. After adding a child task the Bucket information should be loaded for the newly added task.
+3. After adding a child task the Assignees information with images should be loaded for the newly added task.
+4. When user back to project listing page, the same group should be selected along with Project listing.
+5. Performance improved in the Tasks listing page.
+6. Resolved the page loading issue.
+7. Removed some depricated methods.
+
+12th Oct 2020 -
+-------------------------------------------------------
+1. Empty data should not be displayed in the Bucket filter.
+2. Multiple filtering is working.
+3. Assignees photos should be displayed in the subtask.
+4. Implemented pagination with project list. by default 6 projects will be loaded.
+   If the number of project is more than 6, then if user scroll at the bottom then 
+   another call will go to fetch the next 6 projects. Once response come, those projects
+   should be displayed in the list as well and this flow will be repeated until 
+   it finish loading all the projects.
+5. Group logo updated
+
+9th Oct 2020 -
+-------------------------------------------------------
+1. List of buckets should be loaded only once for a project only.
+2. Once it is loaded, it should be stored in storage for future use.
+3. Bucket column is populating now in the Task table.
+4. Bucket List is populating in the bucket filter.
+5. Bucket List is displaying the Add-Edit popup from storage only (no api call)
+6. In the popup the bucket selection is proper now.
+
+7. Resources photo and other information is displaying properly in the Resource Management (no api call for this)
+8. Assignee photo and other information is also displaying as expect in the Task table and Add-Edit popup.
+9. Performance is improved more than 50% in the following views:
+   a. Project listing
+   b. Task Table 
+   c. Resource Management
+   d. to display data in the add-edit popup
+
+
+
+8th Oct 2020 -
+-------------------------------------------------------
+1. Assignee photo in the Add-Edit popup should be loaded from the storage. No separate api is needed to get the assignee informations.
+2. Implemented silent updating the Expiry Token.
+3. GroupMembers information should be loaded asynchronously.
+4. Updated the configuration for DEV Environment.
+
+7th Oct 2020 -
+-------------------------------------------------------
+1. Added Teams logo (Text version) in the Teams pane.
+2. Filter text will be cleared after clicking on the close button in the Teams pane.
+3. Increased the Teams pane width.
+4. Delete icon for the attachment in the add-edit popup should be displayed
+5. Set the same background color for the entire screen.
+6. The Task assignee should be displayed from storage data.
+7. Optimized the TaskTable loading time.
+
+6th Oct 2020 -
+-------------------------------------------------------
+1. Implemented Teams pane at the left side.
+2. Implemented filtering (Case Insensitive) for teams.
+3. Corresponding Plans (Projects) should be loaded after selecting any team.
+4. Group members photo should be loaded asynchronously.
+5. Highligted the selected Plan (Project).
+6. Used Scss feature as much as possible.
+7. Updated display name functionality.

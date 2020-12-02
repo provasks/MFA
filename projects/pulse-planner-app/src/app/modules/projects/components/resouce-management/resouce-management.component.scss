@@ -1,0 +1,129 @@
+@import "../../../../../styles.scss";
+
+$toolbar-height: 40px;
+$full-screen-top: 60%;
+$normal-screen-top: 108px;
+
+@mixin setResourceManagementTop($top: 50%) {
+    top: $top;
+    height: calc(100% - #{$top} - #{$toolbar-height} - 9px);
+    @include vendor-prefix("transition", height 1s);
+    @include vendor-prefix("transition", top 1s);
+}
+
+.resource-management {
+    &.full-size {
+        @include setResourceManagementTop($normal-screen-top);
+        .resize {
+            img {
+                @include vendor-prefix("transition", 1s);
+                @include vendor-prefix("transform", rotate(180deg));
+            }
+        }
+    }
+    &.normal-size {
+        @include setResourceManagementTop($full-screen-top);
+        .resize {
+            img {
+                @include vendor-prefix("transition", 1s);
+                @include vendor-prefix("transform", rotate(0deg));
+            }
+        }
+    }
+    position: absolute;
+    z-index: 10;
+    border-top: 1px solid $lightgray;
+    width: 100%;
+    font-size: 13px;
+    .toolbar {
+        height: $toolbar-height;
+        background-color: $dependency-table-header-bg;
+        display: flex;
+        .header {
+            font-size: 16px;
+            height: 100%;
+            vertical-align: middle;
+            line-height: $toolbar-height;
+            padding-left: 10px;
+            width: 250px;
+        }
+        .right {
+            width: 100%;
+
+            .mat-form-field {
+                float: right;
+                margin: 0 10px;
+                width: 200px;
+                &.mat-form-field-infix {
+                    padding: 9px 0 !important;
+                }
+                mat-icon {
+                    top: -2px;
+                    position: relative;
+                    color: #6089a5;
+                }
+            }
+        }
+    }
+    .resource-table {
+        position: absolute;
+        overflow-y: hidden;
+        // min-width: 250px;
+        border-bottom: 1px solid $lightgray;
+        background-color: $white;
+        height: 100%;
+        .dataCount {
+            border-bottom: 1px solid $lightgray;
+            .resource {
+                display: flex;
+                align-items: center;
+                background-color: $white;
+                border-top: 1px solid $lightgray;
+
+                @each $status-key, $value in $status {
+                    .#{$status-key} {
+                        background-color: $value;
+                        color: $white;
+                        // padding: 2px;
+                        width: 30px;
+                        min-width: 30px;
+                        height: 30px;
+                        text-align: center;
+                        line-height: 30px;
+                    }
+                }
+                .assignee {
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+    .availability-table {
+        position: absolute;
+        overflow-y: scroll;
+        overflow-x: hidden; //hide horizontal scrollbar to implement common scrollbar
+        height: 100%;
+        background-color: $white;
+        border-bottom: 1px solid $lightgray;
+        .dataCount {
+            border-bottom: 1px solid $lightgray;
+            .tr {
+                background-color: $white;
+                height: 31px;
+                .td {
+                    cursor: pointer;
+                    display: inline-block;
+                    text-align: center;
+                    width: $gantt-chart-day-width;
+                    border-right: 1px solid $lightgray;
+                    border-top: 1px solid $lightgray;
+                    line-height: 30px;
+                    &.offday {
+                        cursor: default;
+                        background-color: $dashboard-background;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div class="gantt-calender" *ngIf="days">
+    <div class="header" [style.width]="headerWidth" [style.top]="headerTop">
+        <div class="top">
+            <ng-container *ngFor="let year of distinctYears">
+                <div class="month" [style.width]="month.width+'px'" *ngFor="let month of getMonths(year)">
+                    {{month.name}} {{year}}</div>
+            </ng-container>
+        </div>
+        <div class="bottom">
+            <div class="day" *ngFor="let day of days; let i=index" [style.width]="dayWidth">
+                <div class="group" [ngClass]="{'today':i===todayIndex}">
+                    <span class="value">{{day.dayValue}}</span>
+                    <span class="name">{{day.dayName}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

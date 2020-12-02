@@ -1,0 +1,40 @@
+@import "./../../../../../styles.scss";
+
+$image-width: 25px;
+
+.user-component {
+    margin-right: 5px;
+    display: grid;
+    grid-template-columns: 1fr;
+    &.name {
+        grid-template-columns: 0fr 1fr;
+    }
+    // 
+    .short-name {
+        height: $image-width;
+        width: $image-width;
+        border: 1px solid $lightblue;
+        border-radius: 50%;
+        line-height: calc(#{$image-width} - 2px);
+        color: $white;
+        font-size: 13px;
+        text-align: center;
+    }
+    .photo {
+        width: $image-width;
+        height: $image-width;
+        border: 1px solid $lightblue;
+        border-radius: 50%;
+    }
+    .name {
+        line-height: $image-width;
+        margin-left: 5px;
+        color: $black;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+        // width: 122px;
+        white-space: nowrap;
+    }
+}

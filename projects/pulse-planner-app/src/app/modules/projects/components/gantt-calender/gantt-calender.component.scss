@@ -1,0 +1,65 @@
+@import "./../../../../../styles.scss";
+// @use 'sass:map';
+
+.gantt-calender {
+    .header {
+        border-right: 1px solid $gantt-timeline-bottom-border;
+        border-bottom: 1px solid $gantt-timeline-bottom-border;
+        z-index: 4;
+        background-color: $white;
+        position: relative;
+
+        .top {
+            .month {
+                display: inline-block;
+                // color: $gantt-timeline-month-color;
+                color: $gantt-handle-background;
+                padding: 3px;
+                font-size: 18px;
+                text-align: center;
+                &:nth-child(odd) {
+                    // background-color: #f2f3f4;
+                    background-color: map-get($month, odd);
+                }
+                &:nth-child(even) {
+                    background-color: map-get($month, even);
+                }
+            }
+        }
+        .bottom {
+            .day {
+                display: inline-block;
+                .group {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 22px;
+                    .value {
+                        font-size: 14px;
+                        color: $gantt-timeline-day-value-color;
+                    }
+                    .name {
+                        font-size: 9px;
+                        position: relative;
+                        top: -2px;
+                        color: $gantt-timeline-day-name-color;
+                    }
+                    &.today {
+                        background-color: #039cce;
+                        // padding: 2px;
+                        .value {
+                            color: $white;
+                        }
+                        .name {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+            .today {
+                background-color: $gantt-timeline-today-background-color;
+                color: $gantt-timeline-today-color;
+            }
+        }
+    }
+}

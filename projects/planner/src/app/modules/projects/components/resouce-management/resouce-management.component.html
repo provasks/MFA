@@ -1,0 +1,62 @@
+<div class="resource-management" (click)="onClick($event)" *ngIf="filteredResources"
+    [ngClass]="isFullScreen?'full-size':'normal-size'">
+    <app-resource-detail *ngIf="showDetails"></app-resource-detail>
+    <div class="toolbar">
+        <div class="header">
+            Resource Management
+        </div>
+        <div class="right">
+            <button type="button" class="close mx-2 my-2" (click)="closeResourceManagement($event)">
+                <img src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+            </button>
+            <button type="button" class="close resize mx-2 my-2" (click)="isFullScreen=!isFullScreen">
+                <img src="../../../../../assets/icons/export.png" [alt]="isFullScreen?'full size':'normal size'" />
+            </button>
+            <mat-form-field appearance="fill">
+                <mat-label>Resource Viewer</mat-label>
+                <mat-select [(ngModel)]="selectedViewer" disableOptionCentering>
+                    <mat-option *ngFor="let veiwerType of resourceViewerTypes" [value]="veiwerType.value">
+                        {{veiwerType.text}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <span matPrefix style="margin-right: 8px;">
+                    <mat-icon>filter_alt</mat-icon>
+                </span>
+                <mat-label>Filter</mat-label>
+                <mat-select multiple disableOptionCentering (selectionChange)="filterAssignee($event)">
+                    <mat-option *ngFor="let assignee of assignees; let i =index" [value]="assignee">{{assignee}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="resource-table" [ngStyle]="resourceTableStyle">
+        <div class="dataCount">
+            <div *ngFor="let resource of filteredResources" class="resource">
+                <div class="not-started" data-toggle="tooltip" title="Not Started">{{resource.notStartedTasks}}</div>
+                <div class="in-progress" data-toggle="tooltip" title="In Progress">{{resource.pendingTasks}}</div>
+                <div class="completed" data-toggle="tooltip" title="Completed">{{resource.completedTasks}}</div>
+                <div class="late" data-toggle="tooltip" title="Late">{{resource.lateTasks}}</div>
+                
+                <div class="assignee">
+                    <app-user [user]="resource" [showName]="true"></app-user>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="availability-table" [ngStyle]="availabilityTableStyle" (scroll)="onScroll($event)">
+
+        <div class="dataCount" [ngStyle]="dataCountStyle">
+            <div class="tr" *ngFor="let resource of filteredResources">
+                <div class="td" *ngFor="let day of resource.dayWiseTasks"
+                    [ngClass]="day.isOffday?'offday':'working-day'"
+                    (click)="onAvailabilityClick(day, resource, $event)">
+                    {{getAvailabilityValue(day)}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

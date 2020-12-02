@@ -1,0 +1,16 @@
+@import "./../../../../../styles.scss";
+
+.navbar {
+    font-weight: 600;
+    padding: 5px 10px;
+    border-bottom: 1px solid $lightgray;
+    div {
+        display: flex;
+        width: 150px;
+        align-items: center;
+        .back {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    }
+}

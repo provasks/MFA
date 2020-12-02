@@ -1,0 +1,6 @@
+<div class="user-list" *ngIf="userList && userList.length">
+    <app-user [user]="user" [showName]="userList.length === 1" *ngFor="let user of userList.slice(0,limit)"></app-user>
+    <div class="rest" *ngIf="userList.length > limit">
+        <span>{{ userList.length-limit }}+ </span>
+    </div>
+</div>

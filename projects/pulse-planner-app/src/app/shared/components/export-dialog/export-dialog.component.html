@@ -1,0 +1,50 @@
+<button (click)="closeDialog()" type="button" class="close">
+    <img src="../../../../../assets/icons/closeicon.png " alt="close icon " />
+</button>
+<div class="container">
+    <p class="export-title"> Export As Excel </p>
+
+    <div class="row ">
+        <div class="col-md-6 ">
+            <label> Start date </label>
+            <mat-form-field appearance="outline" class="ml-0 ">
+                <input autocomplete="off " matInput (dateChange)="selectedStartDate($event)" [matDatepicker]=" picker1 ">
+                <mat-datepicker-toggle matSuffix [for]="picker1 ">
+                    <mat-icon matDatepickerToggleIcon>
+                        <img src="../../../../../assets/icons/callendericon.png " alt="arrow down icon " />
+                    </mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="col-md-6 ">
+            <label> End date </label>
+            <mat-form-field appearance="outline" class="ml-0 ">
+                <input autocomplete="off " matInput (dateChange)="selectedEndDate($event)" [matDatepicker]=" picker2 ">
+                <mat-datepicker-toggle matSuffix [for]="picker2 ">
+                    <mat-icon matDatepickerToggleIcon>
+                        <img src="../../../../../assets/icons/callendericon.png " alt="arrow down icon " />
+                    </mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+    </div>
+
+    <div class="aligndiv ">
+        <label>Columns</label>
+        <div class="row ">
+            <mat-checkbox [checked]="true" (change)="enableBucket($event)">Bucket</mat-checkbox>
+            <mat-checkbox [checked]="true" (change)="enableStartDate($event)">Start Date</mat-checkbox>
+            <mat-checkbox [checked]="true" (change)="enableEndDate($event)">End Date</mat-checkbox>
+            <mat-checkbox [checked]="true" (change)="enableAssignee($event)">Assignee</mat-checkbox>
+            <mat-checkbox [checked]="true" (change)="enableLabel($event)">Label</mat-checkbox>
+        </div>
+    </div>
+    <div class=" aligndiv " mat-dialog-actions>
+        <button class="export-btn " [mat-dialog-close]="data" mat-flat-button>Export Excel</button>
+    </div>
+
+</div>

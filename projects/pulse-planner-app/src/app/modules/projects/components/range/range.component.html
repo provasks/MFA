@@ -1,0 +1,11 @@
+<div class="mat-range-slider mt-3">
+  <mat-slider (mouseleave)="updatePercentage($event)" thumbLabel tickInterval="100" [value]="percentage" min="0"
+    max="100" step="10" tickInterval="10">
+  </mat-slider>
+  <div class="range-legends">
+    <ul>
+      <li class="dotted" *ngFor="let x of legends">
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+@import "./../../.././../../styles.scss";
+
+.task-chart {
+    height: 100%;
+    // position: relative;
+    // cursor: move; /* fallback: no `url()` support or images disabled */
+    // // cursor: url(images/grab.cur); /* fallback: Internet Explorer */
+    // cursor: -webkit-grab; /* Chrome 1-21, Safari 4+ */
+    // cursor: -moz-grab; /* Firefox 1.5-26 */
+    // cursor: grab; /* W3C standards syntax, should come least */
+
+    .taskList {
+        height: 100%; //calc(100% - 56px);
+        border-right: 1px solid $lightgray;
+        border-bottom: 1px solid $lightgray;
+        .bar-container {
+            position: relative;
+            @each $key, $color in $dependency {
+                .#{$key} {
+                    &.line {
+                        position: absolute;
+                        border: none;
+                        z-index: 1;
+                        cursor: pointer;
+                        @each $direction in $line-directions {
+                            &.#{$direction} {
+                                background-color: $color;
+                                @if ($direction == "horizontal") {
+                                    height: $line-thickness;
+                                } @else {
+                                    width: $line-thickness;
+                                }
+                                &.over {
+                                    @if $direction == "horizontal" {
+                                        @include vendor-prefix("box-shadow", 1px 0px 1px 1px lighten($color, 25%));
+                                    } @else {
+                                        @include vendor-prefix("box-shadow", 0px 0px 1px 1px lighten($color, 25%));
+                                    }
+                                    z-index: 2;
+                                }
+                            }
+                        }
+                    }
+                    &.arrow-head {
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        z-index: 2;
+                        top: calc(#{$table-row-height}/ 2 - 5px);
+
+                        @each $direction in $arrow-directions {
+                            &.#{$direction} {
+                                border-top: 5px solid transparent;
+                                border-bottom: 5px solid transparent;
+                                @if $direction == "left" {
+                                    border-right: 5px solid $color;
+                                } @else {
+                                    border-left: 5px solid $color;
+                                }
+                                &.over {
+                                    z-index: 3;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+@import "../../../../contents/scss/variables.scss";
+mat-slider, .range-legends {
+    width: 100% !important;
+  }
+
+  .range-legends {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    width: 92% !important;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+      padding-left: 20px;
+
+      li{
+        list-style-type: disc;
+        color: $range-point-color;
+        font-size: 20px;
+      }
+    }
+  }

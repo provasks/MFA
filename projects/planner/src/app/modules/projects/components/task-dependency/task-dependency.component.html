@@ -1,0 +1,21 @@
+<div class="dependency-task-modal-sec" id="dependencyComp">
+    <div class="header-title">
+        <h2 class="task-heading-h2 float-left m-3">
+            <p class="modal-heading-text">
+                {{rowData?.title}}
+            </p>
+        </h2>
+        <button type="button" class="close mx-3 my-3" (click)="closeModal()">
+        <img src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+    </button>
+    </div>
+    <div class="clear-both"></div>
+    <div class="table-container">
+        <app-table-dependency [parentTaskId]="rowData?.id" (closeDependencyModalEmit)="sendMessageToParent($event)"></app-table-dependency>
+    </div>
+
+    <div class="search-container">
+        <app-search-task-dependency [parentTaskData]="rowData" (closeDependencyModalEmit)="sendMessageToParent($event)"> </app-search-task-dependency>
+    </div>
+
+</div>

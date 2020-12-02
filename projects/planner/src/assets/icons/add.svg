@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="62.339" height="62.339" viewBox="0 0 62.339 62.339">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-size: 17px;
+        font-family: FontAwesome5Free-Solid, 'Font Awesome 5 Free';
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+
+      .cls-5 {
+        filter: url(#Ellipse_13);
+      }
+    </style>
+    <filter id="Ellipse_13" x="0" y="0" width="62.339" height="62.339" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="add" transform="translate(-1287.465 -659.386)">
+    <g class="cls-5" transform="matrix(1, 0, 0, 1, 1287.46, 659.39)">
+      <g id="Ellipse_13-2" data-name="Ellipse 13" class="cls-1" transform="translate(6 3)">
+        <circle class="cls-3" cx="25.169" cy="25.169" r="25.169"/>
+        <circle class="cls-4" cx="25.169" cy="25.169" r="24.169"/>
+      </g>
+    </g>
+    <text id="plus" class="cls-2" transform="translate(1310.561 693.532)"><tspan x="0" y="0">plus</tspan></text>
+  </g>
+</svg>

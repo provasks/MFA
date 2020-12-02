@@ -1,0 +1,22 @@
+<div class="col-md-12 dependency-table-comp" *ngIf="dependecyTableData?.length>0">
+    <table class="table table-bordered table-hover" >
+        <thead class="thead-light">
+        <tr>
+            <th class="task-title" scope="col">Task title</th>
+            <th class="dependency-type" scope="col">Dependent Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let task of dependecyTableData">
+            <td class="text-left"> 
+                <span class="ml-2"> {{ task.title }} </span> 
+            </td>
+            <td class="text-left"> 
+                <span class="ml-2"> {{task.dependencyType}} </span>
+                <img class="float-right" src="../../../../../assets/icons/delete_task.svg" alt="delete icon" (click)="deleteDependancy(task)" /> 
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>

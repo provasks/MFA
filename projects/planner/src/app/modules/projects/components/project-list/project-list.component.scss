@@ -1,0 +1,199 @@
+@import "../../../../../styles.scss";
+
+$teams-pane-width: 250px;
+
+// div[class^=col-]{
+//     padding-left: 5px;
+//     padding-right: 5px;
+// }
+
+.list-title {
+  @include vendor-prefix(box-shadow, 0 1px 2px 1px $project-toolbar-color);
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+  background-color: $white;
+  justify-content: space-between;
+  .right {
+    padding-right: 20px;
+  }
+}
+
+.project-list {
+  margin-top: 3px;
+  display: flex;
+  justify-content: space-between;
+  height: calc(100% - 55px); /* Only for planner*/
+  .groups {
+    @include vendor-prefix(box-shadow, 1px 0px 5px 0px $project-toolbar-color);
+    background-color: $white;
+    width: $teams-pane-width;
+    // flex: 0 0 $teams-pane-width;
+    // padding-left: 16px;
+    margin-right: 5px;
+    .header {
+      height: 50px;
+      border-bottom: 1px solid $project-toolbar-color;
+      padding: 0 16px;
+      .title-bar {
+        height: 100%;
+        @include align-center();
+        .title {
+          font-size: 16px;
+          font-weight: 600;
+          // line-height: 34;
+        }
+        mat-icon {
+          font-size: 20px;
+          cursor: pointer;
+          color: lighten($color: $black, $amount: 30);
+          &:hover {
+            color: $black;
+          }
+        }
+      }
+      .filter-bar {
+        @include align-center();
+        height: 100%;
+        input {
+          width: 100%;
+          border: 0;
+          outline: none;
+        }
+        mat-icon {
+          cursor: pointer;
+          font-size: 20px;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .group-list {
+      max-height: calc(100vh - 125px);
+      overflow-y: auto;
+      padding-left: 16px;
+      .group {
+        // padding: 0 16px;
+        margin-top: 5px;
+        cursor: pointer;
+        margin: 5px 10px 0 0;
+        height: 35px;
+        line-height: 34px;
+        font-size: 14px;
+        display: flex;
+        .logo {
+          width: 32px;
+          height: 32px;
+          // @include align-center();
+          margin-right: 5px;
+          text-align: center;
+          color: $white;
+        }
+        .name {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 200px;
+        }
+        &.selected {
+          font-weight: 600;
+          background-color: #eefbff;
+        }
+      }
+    }
+  }
+  .projects {
+    flex: 1;
+    padding: 16px;
+    // width: 100%;
+    background-color: $outer-background-color;
+    height: calc(100vh - 75px);
+    max-height: calc(100vh - 75px);
+    .header {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+    .list {
+      max-height: calc(100vh - 140px);
+      overflow-y: scroll;
+      margin-top: 10px;
+      mat-card {
+        cursor: pointer;
+        margin-bottom: 20px;
+
+        mat-card-title {
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .milestone {
+          font-size: 14px;
+          color: $milestone-color;
+          opacity: 1;
+          letter-spacing: 0px;
+        }
+        div[id^="chart"] {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .legend {
+          padding-top: 5px;
+          .status {
+            display: flex;
+            font-size: 12px;
+            align-items: center;
+            // justify-content: center;
+            padding: 2px;
+            .dot {
+              width: 12px;
+              height: 12px;
+              @each $key, $value in $status {
+                &.#{$key} {
+                  background-color: $value;
+                }
+              }
+              border-radius: 50%;
+              margin-right: 5px;
+            }
+          }
+        }
+        mat-card-content {
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .preloader {
+            width: 124px;
+            height: 24px;
+            // background-image: url("../../../../../assets/images/preloader.gif");
+          }
+        }
+      }
+    }
+    .no-project {
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // height: calc(100% - 40px);
+      .message {
+        text-align: center;
+        color: #767676;
+        font-size: 22px;
+        .orange {
+          color: #d6713c;
+        }
+      }
+    }
+  }
+}
+
+.tooltip {
+  font-size: 12px;
+}

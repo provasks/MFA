@@ -1,0 +1,79 @@
+<div class="time-management mb-2">
+
+
+    <button type="button" class="btn btn-time-management collapsed text-left" data-toggle="collapse"
+        data-target="#timeManagementSec">
+        <span class="arrow-icon"></span>
+        Time Estimation
+    </button>
+    <div id="timeManagementSec" class="collapse hide px-2 time-management-sec py-2">
+        <div class="row">
+            <div class="col-md-6 duration-sec">
+                <label> Duration</label>
+                <div class="form-group">
+                    <span class="duraion-value px-3 py-2"> {{ durationDays }} </span>
+                    <span class="duraion-days px-3 py-2"> Days </span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label> Estimated Hours</label>
+                <div class="form-group">
+                    <input type="number" min="0" max="100" class="form-control" [(ngModel)]="estimatedHours"
+                        (blur)="assignedHoursChamge($event)"
+                        [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)" />
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 my-2">
+                <button class="btn btn-compute mr-2 px-2" (click)="computeHours()"
+                    [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)"> Compute Hours </button>
+                <button class="btn btn-clear px-2" (click)="clearHours()"
+                    [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)"> Clear Hours </button>
+            </div>
+
+        </div>
+
+
+        <div class="row my-2">
+            <div class="col-md-12 table-responsive">
+                <table class="table table-bordered time-management-table">
+                    <caption></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="assignee-th">Assignee</th>
+                            <th scope="col" class="hrs-day-th"> Hrs/Day</th>
+                            <th scope="col" class="total-hours-th">Total Hours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let assign of assignedUsers; let i=index">
+                            <td> {{ assign.displayName }} </td>
+                            <td class="hours-td"> <input id="hours{{i}}" class="hours-input text-center"
+                                    (blur)="hoursChange($event.target.value, i)" [(ngModel)]="assign.hours"
+                                    [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)" /> <span
+                                    class="duration-days-table ml-2"> * {{ assign.days }} </span> </td>
+                            <td class="total-hrs-td text-center"> <input id="totalHours{{i}}"
+                                    class="total-hours-input text-center"
+                                    (blur)="totalHoursChange($event.target.value, i)" [(ngModel)]="assign.totalHours"
+                                    [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)" /> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 assigned-unassigned-values">
+                <span> <span data-toggle="tooltip" title="overloaded" class="overload"
+                        *ngIf="assignedHours > estimatedHours">!</span> Assigned Hours: {{assignedHours}} </span>
+                <span class="ml-3"> <span data-toggle="tooltip" title="overloaded" class="overload"
+                        *ngIf="estimatedHours > assignedHours">!</span> Unassigned Hours: {{ unAssignedHours }} </span>
+
+            </div>
+        </div>
+
+    </div>
+</div>

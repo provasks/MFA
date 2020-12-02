@@ -1,0 +1,34 @@
+<div class="labels-dropdown">
+    <button type="button" [disabled]="!isActionEnable" class="btn label-menu-btn" (click)="openLabelMenu()">
+     <span *ngFor="let label of displayLabels; let i = index">
+       <span class="category-name mr-1" *ngIf="i < 3" [ngClass]="label" data-toggle="tooltip" [title]="selectedLabels(label)"> {{selectedLabels(label)}} </span>
+      </span>
+    <span class="more-label px-2 py-1" *ngIf="displayLabels.length > 3">{{displayLabels.length -3}}+</span>
+    <ng-container *ngIf="isActionEnable">
+      <img src="../../../../../assets/icons/arrowDown.png" alt="arrow down" class="float-right" />
+    </ng-container>
+    
+      <button role="button" tabindex="0" class="btn btn-link float-right label-update-btn label-edit-btn mr-4 mt-1" *ngIf="!isLabelsEdit && isOpenMenu" (click)="toggleLabelEdit()">
+        <mat-icon tabindex="-1" aria-hidden="false" aria-label="edit icon">edit</mat-icon>
+      </button>
+    <button role="button" tabindex="0" class="btn btn-link float-right label-update-btn label-save-btn mr-4 mt-1" *ngIf="isLabelsEdit && isOpenMenu" (click)="saveLabelNamesUpdate()">
+        <mat-icon tabindex="-1" aria-hidden="false" aria-label="save icon">save</mat-icon>
+      </button>
+
+    </button>
+    <div class="row label-dropdown-menu" *ngIf="isOpenMenu">
+        <div class="col-md-12 checkbox-container">
+            <ul class="checklist-container p-0">
+                <li *ngFor="let labelValue of labelData; let i = index" class="my-1 custom-control label-checkbox">
+                    <input type="checkbox" id="labelListCheck{{i}}" class="custom-control-input" (change)="updateLabel($event, i)" [checked]="labelValue.value" />
+                    <label class="custom-control-label" for="labelListCheck{{i}}"></label>
+
+                    <label *ngIf="!isLabelsEdit" class="label-name px-2" for="labelListCheck{{i}}" [ngClass]="labelValue.name">
+                  {{ addLabelName(labelValue.name)}}</label>
+
+                    <input *ngIf="isLabelsEdit" [ngClass]="labelValue.name" [value]="addLabelName(labelValue.name)" class="form-control label-input" type="tex" value="" (keyup)="labelNameUpdate(labelValue.name, $event)" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

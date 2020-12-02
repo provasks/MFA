@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11.397" height="10.448" viewBox="0 0 11.397 10.448">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fc6b02;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="slider" transform="translate(-760.58 -208.389)">
+    <rect id="Rectangle_22" data-name="Rectangle 22" class="cls-1" width="11.397" height="10.448" rx="2" transform="translate(760.58 208.389)"/>
+    <path id="Path_6" data-name="Path 6" class="cls-2" d="M1.877,2.619a.312.312,0,0,0,.444,0L4.105.834a.314.314,0,0,0,0-.445l-.3-.3a.314.314,0,0,0-.445,0L2.1,1.358.834.093a.314.314,0,0,0-.445,0l-.3.3a.314.314,0,0,0,0,.445Z" transform="translate(766.005 215.573) rotate(-90)"/>
+  </g>
+</svg>

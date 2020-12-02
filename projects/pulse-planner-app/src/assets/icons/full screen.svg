@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.242" height="28.494" viewBox="0 0 33.242 28.494">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #d8d8d8;
+        stroke-width: 0.5px;
+      }
+
+      .cls-2 {
+        fill: #595959;
+        font-size: 17px;
+        font-family: FontAwesome5Free-Solid, 'Font Awesome 5 Free';
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="full_screen" data-name="full screen" transform="translate(-580 -163)">
+    <g id="Rectangle_6" data-name="Rectangle 6" class="cls-1" transform="translate(580 163)">
+      <rect class="cls-3" width="33.242" height="28.494" rx="5"/>
+      <rect class="cls-4" x="0.25" y="0.25" width="32.742" height="27.994" rx="4.75"/>
+    </g>
+    <text id="compress" class="cls-2" transform="translate(588.548 183.699)"><tspan x="0" y="0">compress</tspan></text>
+  </g>
+</svg>

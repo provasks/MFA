@@ -1,0 +1,249 @@
+.assignee-sec-main {
+    position: relative;
+
+    .assignees-add-sec {
+        display: flex;
+        position: relative;
+        top: 30px;
+        overflow: hidden;
+
+        .profiles-assignees {
+            display: flex;
+            position: absolute;
+            top: 31px;
+            left: 45px;
+            align-items: center;
+
+            .display-flex {
+                display: flex;
+                align-items: center;
+                .email-value {
+                    overflow: hidden;
+                    width: 200px;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+        .profiles-assignees-addtask {
+            display: flex;
+            align-items: baseline;
+            .asignees-info {
+                display: flex;
+                position: relative;
+                top: 7px;
+                margin: 0 5px;
+
+                img:not(.user-icon-profile) {
+                    width: 30px;
+                    height: 30px;
+                }
+
+                span {
+                    overflow: hidden;
+                    width: 150px;
+                    text-overflow: ellipsis;
+                    position: relative;
+                    top: -2px;
+                    left: 5px;
+                }
+            }
+        }
+        .assign-add {
+            left: 5px;
+            position: relative;
+            bottom: 3px;
+        }
+    }
+
+    .add-assign {
+        padding-left: 0;
+        cursor: pointer;
+        box-shadow: none;
+        outline: none;
+    }
+    .assignees-container-dropdown {
+        position: absolute;
+        // width: 300px;
+        height: 300px;
+        overflow-y: auto;
+        top: 60px;
+        z-index: 9;
+        border: 1px solid $ddd-color;
+        background: $gantt-timeline-today-color;
+        padding: 10px;
+
+        .assigne-search {
+            input {
+                border: none;
+
+                &:focus {
+                    border-bottom: 1px solid $inpu-focus-color;
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .assignee-list {
+            border: none;
+            outline: none;
+            ul {
+                padding: 0;
+                height: 210px;
+                overflow-y: auto;
+                p {
+                    margin: 10px 0 5px 0;
+                }
+
+                .heading-assign {
+                    font-weight: 600;
+                }
+
+                li {
+                    list-style-type: none;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    &.unassigned {
+                        cursor: pointer;
+                    }
+                    &:hover {
+                        background-color: $gray;
+                        text-decoration: none;
+                    }
+                    .close {
+                        position: relative;
+                        right: 5px;
+                        font-size: 14px;
+                        width: 10px;
+                        height: 10px;
+                        border: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* check list style */
+.checklist-container,
+.custom-control {
+    .checklist-input,
+    .checklist-input:focus {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+        outline: none;
+        padding: 10px;
+        height: 30px;
+        width: 90%;
+    }
+
+    .checklist-input:hover {
+        background-color: $input-bg-color;
+    }
+
+    .custom-control-label::after,
+    .custom-control-label::before {
+        @include customLabelStyle;
+        top: 0;
+    }
+
+    &.add-check {
+        .custom-control-label::after,
+        .custom-control-label::before {
+            top: -4px;
+        }
+    }
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background: $comment-date-color 0% 0% no-repeat padding-box;
+        box-shadow: 0px 3px 6px #00000029;
+        border: 0.5px solid $custom-control-input-check;
+        border-radius: 2px;
+        @include customLabelStyle;
+    }
+
+    .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+        border-bottom: 2px solid $dashboard-tile-background;
+        border-left: 2px solid $dashboard-tile-background;
+        transform: rotate(-45deg);
+        top: 5px !important;
+        position: absolute;
+        left: -21px;
+        width: 12px !important;
+        height: 6px !important;
+        background-image: none;
+    }
+
+    .text-stike {
+        text-decoration: line-through;
+        color: $comment-date-color;
+    }
+
+    .custom-control-label {
+        top: 8px;
+    }
+}
+
+.comments-card {
+    background: $comments-card-color 0% 0% no-repeat padding-box;
+    border: 0.4000000059604645px solid $comments-card-border;
+    padding: 15px;
+    display: flex;
+    margin: 20px 0;
+
+    .coment-data {
+        width: 100%;
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .title {
+        color: $gantt-timeline-day-value-color;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .comment-info {
+        color: $comment-info-color;
+        padding-left: 30px;
+    }
+
+    .comment-date {
+        color: $comment-date-color;
+        font-size: 12px;
+        text-align: end;
+    }
+}
+
+/* sharpoint styles */
+
+.sharepoint-table-sec {
+    height: 400px;
+    overflow-y: auto;
+
+    table {
+        width: 100%;
+
+        .highlighted {
+            background: $selcetedRow;
+        }
+        .mat-row {
+            &:hover {
+                background: $gantt-timeline-month-color;
+            }
+        }
+    }
+}
+
+.add-task-modal-sec {
+    .close {
+        position: absolute;
+        right: 5px;
+    }
+}

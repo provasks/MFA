@@ -1,0 +1,196 @@
+@import "./app/contents/scss/mixins.scss";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,600,900&display=swap");
+*:not(.mat-icon) {
+    font-family: "Poppins", sans-serif;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    @include scrollbars();
+}
+
+.projects {
+    .mat-tab-body-content {
+        display: flex;
+        justify-content: flex-start;
+        // height: 520px;
+        // overflow-y: scroll;
+    }
+}
+
+.add-task-modal-sec {
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+        padding: 0;
+        border: none;
+    }
+    .mat-form-field-suffix {
+        position: absolute;
+        right: 15px;
+        top: 5px;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        display: none;
+    }
+}
+
+/* global css start here */
+
+.btn.disabled,
+.btn:disabled {
+    cursor: no-drop;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.outline-none,
+.outline-none:focus {
+    outline: none;
+}
+
+.relativeElm {
+    position: relative;
+}
+
+/*  after doing link modal need to remove */
+
+.modal-backdrop {
+    display: none;
+}
+
+.mat-calendar-table-header th {
+    color: $header-color;
+}
+
+.mat-tab-label,
+.mat-tab-link {
+    color: $tab-title-color;
+}
+
+.mat-tab-label.mat-tab-label-active {
+    color: $tab-active-color;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: $tab-active-color;
+}
+
+// .mat-select-panel {
+//     margin-top: 0.9em !important;
+// }
+
+/* meterial design range css start here */
+.mat-slider {
+    width: 240px !important;
+}
+.mat-range-slider {
+    .mat-accent .mat-slider-thumb {
+        background-color: #03a9f4;
+        opacity: 0;
+    }
+    .mat-slider-horizontal .mat-slider-thumb-label {
+        opacity: 1;
+        border-radius: 50% 50% 0;
+        transform: rotate(45deg);
+        background-color: $range-border-color !important;
+    }
+    .mat-accent .mat-slider-thumb-label-text {
+        opacity: 1;
+    }
+    .mat-slider-horizontal .mat-slider-track-fill {
+        background-color: $range-border-color;
+        height: 4px;
+    }
+    .mat-slider-horizontal .mat-slider-wrapper {
+        top: 22px;
+    }
+    .mat-slider-horizontal .mat-slider-ticks {
+        opacity: 0 !important;
+        position: relative;
+    }
+    .mat-slider-horizontal .mat-slider-track-background {
+        background-color: $input-bg-color;
+        height: 8px !important;
+    }
+    .mat-slider-horizontal .mat-slider-track-wrapper {
+        height: 4px !important;
+    }
+}
+
+/* for range css end here */
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    display: none;
+}
+
+.columnViewer {
+    margin-left: 104px;
+    width: 96px;
+}
+
+.filterPanel {
+    // margin-left: 30px !important;
+    // margin-top: 40px !important;
+    width: 170px;
+    height: 244px;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-fill::after {
+    background-color: $accent-fill-color;
+}
+.mat-progress-bar-buffer {
+    background-color: $accent-buffer-color;
+}
+
+.mat-progress-bar {
+    height: 9px;
+}
+
+.mat-progress-bar-fill::after {
+    background-color: $primary-fill-color;
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar-fill::after {
+    background-color: $warn-fill-color;
+}
+
+.mat-progress-bar.mat-accent .mat-progress-bar-buffer {
+    background-color: $accent-buffer-color;
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar-buffer {
+    background-color: $accent-buffer-color;
+}
+
+.pie-chart-tasks-sec {
+    .pathshow {
+        opacity: 1 !important;
+    }
+}
+
+.mat-input-element:disabled {
+    cursor: no-drop;
+}
+
+button {
+    &:focus,
+    &:active {
+        outline: none;
+        outline: 0;
+    }
+}
+
+.mat-select-position {
+    margin-top: 15px !important;
+    // left: -184px;
+    position: relative;
+}

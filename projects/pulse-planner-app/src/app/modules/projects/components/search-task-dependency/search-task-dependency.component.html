@@ -1,0 +1,62 @@
+<div class="dependency-comp">
+    <div class="col-md-12">
+        <button type="button" [disabled]="setDependencyFlag" [ngClass]="{'disable-btn':setDependencyFlag}" class="add-dependency-btn btn px-3"
+            (click)="toggleDependency()"> Add Dependency
+        </button>
+    </div>
+
+    <!-- set dependency sec show and hide start here -->
+    <div class="set-dependency mt-3" *ngIf="setDependencyFlag">
+        <div class="col-md-12">
+            <label for="searchDependency"> Set Dependency</label>
+            <div class="form-group search-input-container">
+                <input type="text" autocomplete="off" id="searchDependency" class="form-control search-dependence-input"
+                    [(ngModel)]="searchTask" (keyup)="filterTaskData($event)"
+                    placeholder="Search your Dependency Task" />
+                <img class="search-icon" src="../../../../../assets/icons/search.svg" alt="search icon" />
+            </div>
+
+            <div class="tasks-container" *ngIf="searchTask.length > 2 && taskContainerFlag">
+                <ul class="list-unstyled m-0">
+                    <li *ngFor="let task of dependecyTableData" (click)="selectDependecyTitle(task)">
+                        {{task.title}}
+                    </li>
+                </ul>
+                <p *ngIf="dependecyTableData.length == 0 && taskContainerFlag" class="no-matches-text ml-4"> No Matches Found
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-12 dropdown-dependency-container mt-2">
+            <div class="form-group mb-0">
+                <label> Dependency Type</label>
+            </div>
+            <button type="button" id="selectDependencyType" tabindex="0" class="btn set-dependency-menu-btn text-left" (click)="openLabelMenu()">
+                {{dependencyValue}}
+                <img src="../../../../../assets/icons/arrowDown.png" alt="arrow down" class="float-right" />
+            </button>
+
+            <div class="dropdown-menu-dependency" *ngIf="isOpenMenu">
+                <ul class="list-unstyled m-0">
+                    <ng-container *ngFor="let dependency of dependencyTypesList">
+                        <li class="dependency-type" [ngClass]="{'active': activeType(dependency)}" (click)="dependencyChange($event, dependency)">
+                            {{dependency.name}}
+                        </li>
+                </ng-container>
+                </ul>
+            </div>
+            <p class="text-danger" *ngIf="dependencyTypesError">
+                Not able to Set Dependency, please choose some valid task.
+            </p>
+        </div>
+
+        <div class="col-md-12 action-btns">
+            <button type="button" [disabled]="(isSetDependency && !(searchTask?.length > 2)) || (dependencyTypesList.length == 0)" class="btn add-dependency-btn mr-4" (click)="addDependency()"> Add </button>
+            <button type="button" class="btn cancel-btn" (click)="cancel()"> Cancel </button>
+        </div>
+
+    </div>
+     <!-- set dependency sec show and hide end here -->
+
+</div>
+

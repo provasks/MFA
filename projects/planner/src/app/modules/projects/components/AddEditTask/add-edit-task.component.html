@@ -1,0 +1,557 @@
+<!-- modal content here -->
+
+<div class="add-task-modal-sec" id="addEditContainer">
+    <!-- Add Task container Start here -->
+    <div class="modal-container-sec add-task-modal-container" *ngIf="isAddTaskFlag">
+        <div class="header-title">
+            <h2 class="task-heading-h2 float-left m-3">
+                <p class="modal-heading-text" *ngIf="!parentTaskNameFlag">
+                    Create a Task
+                </p>
+                <p class="modal-heading-text" *ngIf="parentTaskNameFlag">
+                    Create a Sub Task
+                </p>
+            </h2>
+            <button type="button" class="close mx-3 my-3 float-right" (click)="sendMessageToParent()">
+                <img src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+            </button>
+        </div>
+        <div class="clear-both"></div>
+        <div class="form-container">
+            <form [formGroup]="addTaskForm">
+                <div class="col-md-12" *ngIf="parentTaskNameFlag">
+                    <div class="form-group">
+                        <label for="taskName" class="label-text-color">Parent task</label>
+                        <input [attr.maxlength]="maxLengthInput" readonly="true" type="text" class="form-control"
+                            value="{{parentTaskName}}">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="taskName" class="label-text-color">Task name</label>
+                        <input autocomplete="off" [attr.maxlength]="maxLengthInput" type="text"
+                            formControlName="taskName" class="form-control" placeholder="Enter Task Name" id="taskName">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group bucket-sec">
+                                <label for="taskName" class="label-text-color">Bucket</label>
+                                <img src="../../../../../assets/icons/arrowDown.png" alt="arrow down" />
+                                <select name="cars" class="custom-select mb-3" (change)="addBucketChange($event)"
+                                    formControlName="bucketValue">
+                                    <option [value]="bucket.name" *ngFor="let bucket of bucketList">{{bucket.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 assignee-sec-main">
+                            <div class="assignees-add-sec ">
+                                <button id="addAssignBtn" tabindex="0" class="label-text-color add-assign btn btn-link"
+                                    type="button" (click)="getAssignees($event)" style="display:flex">
+                                    <img src="../../../../../assets/icons/assignIcon.png"
+                                        class="edit-assignee-icon float-left" alt="assginee icon" />
+                                    <span class="assign-add"> Assign </span>
+                                </button>
+                                <app-user-list [userList]="assignListLocal" [limit]="3">
+                                </app-user-list>
+                            </div>
+                            <div class="assignees-container-dropdown" *ngIf="assigneeDropDown">
+                                <div class="assigne-search form-group mb-0">
+                                    <input autocomplete="off" class="form-control" (keyup)="filterAssignees($event)"
+                                        formControlName="assigneSearchValue" />
+                                    <div class="assignee-list " tabindex="0">
+                                        <ul>
+                                            <p class="heading-assign"> Assigned</p>
+                                            <li class="user-list py-1 px-2"
+                                                *ngFor="let assignee of assignListLocal; let i= index;">
+                                                <app-user [user]="assignee" [showName]="true"></app-user>
+                                                <img class="close" (click)="removeAssignee(assignee, i, $event)"
+                                                    src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+
+                                            </li>
+
+                                            <p class="heading-assign mt-2">Unassigned</p>
+
+                                            <li class="user-list unassigned py-1 px-2"
+                                                (click)="addToAssigned(assignee, i, $event)"
+                                                *ngFor="let assignee of usersList; let i = index;">
+                                                <app-user [user]="assignee" [showName]="true"></app-user>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label class="label-text-color" for="startDateAdd"> Start date </label>
+
+                            <mat-form-field class="example-full-width datepicket-sec ml-0">
+                                <input class="p-3" autocomplete="off" [min]="addTaskStartDateMinValue" matInput
+                                    [matDatepicker]="picker1" id="startDateAdd" formControlName="startDateVal">
+                                <mat-datepicker-toggle matSuffix [for]="picker1">
+                                    <mat-icon matDatepickerToggleIcon>
+                                        <img src="../../../../../assets/icons/callendericon.png"
+                                            alt="arrow down icon" />
+                                    </mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+                            <p class="text-danger"
+                                *ngIf="addTaskForm.controls.startDateVal.errors && addTaskForm.controls.startDateVal.touched">
+                                Please enter the Start Date</p>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="label-text-color" for="dueDateAdd"> End date</label>
+                            <mat-form-field class="example-full-width datepicket-sec ml-0">
+                                <input class="p-3" autocomplete="off" [min]="addTaskForm.controls.startDateVal.value"
+                                    matInput [matDatepicker]="picker2" formControlName="dueDateVal">
+                                <mat-datepicker-toggle matSuffix [for]="picker2">
+                                    <mat-icon matDatepickerToggleIcon>
+                                        <img src="../../../../../assets/icons/callendericon.png"
+                                            alt="arrow down icon" />
+                                    </mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                            <p class="text-danger"
+                                *ngIf="addTaskForm.controls.dueDateVal.errors && addTaskForm.controls.dueDateVal.touched">
+                                Please enter the End Date</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="notesAdd" class="label-text-color">Notes</label>
+                        <textarea [attr.maxlength]="maxLengthTextArea" formControlName="notesAddVal" type="text"
+                            class="form-control notes" placeholder="" id="notesAdd"> </textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 add-task-btn-modal">
+                    <button class="btn add-task-action px-4 float-left" [disabled]="!addTaskForm.valid"
+                        (click)="addTask()">Add Task</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- Add Task container End here -->
+
+    <!-- Edit and view task modal -->
+    <div class="modal-container-sec edit-details-modal-container" *ngIf="isEditTaskFlag">
+        <div class="header-title">
+            <h2 class="task-heading-h2 float-left m-3">
+                <p class="modal-heading-text m-0">
+                    {{taskName}}
+                </p>
+                <p class="last-change m-0">
+                    Last changed yesterday by {{lastChange}}
+                </p>
+            </h2>
+            <button type="button" class="close mx-3 my-3" (click)="sendMessageToParent()">
+                <img src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+            </button>
+        </div>
+        <div class="clear-both"></div>
+
+
+
+        <div class="form-container editform">
+            <div class="col-md-12 assignee-sec-main">
+                <p class="mb-1"> Assignee </p>
+                <div class="assignees-add-sec">
+                    <button id="addAssignBtn" tabindex="0" class="label-text-color add-assign btn btn-link pl-0 mb-2"
+                        type="button" [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)"
+                        (click)="getAssignees($event)">
+                        <img src="../../../../../assets/icons/assignIcon.png" class="edit-assignee-icon float-left"
+                            alt="assginee icon" />
+                    </button>
+                    <app-user-list [userList]="assignListLocal" [limit]="3"></app-user-list>
+                </div>
+
+
+                <div id="assigneeListId" class="assignees-container-dropdown testedit" *ngIf="assigneeDropDown">
+                    <div class="assigne-search form-group mb-0">
+                        <input type="text" autocomplete="off" class="form-control" (keyup)="filterAssignees($event)"
+                            [(ngModel)]="assigneSearchValue" />
+                        <div class="assignee-list " tabindex="0">
+                            <ul class="ml-1 pt-3 pl-2 mb-0">
+                                <p class="heading-assign"> Assigned</p>
+                                <li class="user-list py-1 px-2" *ngFor="let assignee of assignListLocal; let i= index;">
+                                    <app-user [user]="assignee" [showName]="true"></app-user>
+                                    <img class="close" (click)="removeAssignee(assignee, i, $event)"
+                                        src="../../../../../assets/icons/closeicon.png" alt="close icon" />
+
+                                </li>
+
+                                <p class="heading-assign mt-2">Unassigned</p>
+
+                                <li class="user-list unassigned py-1 px-2" (click)="addToAssigned(assignee, i, $event)"
+                                    *ngFor="let assignee of usersList; let i = index;">
+                                    <app-user [user]="assignee" [showName]="true"></app-user>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="bucketNameEdit" class="label-text-color">Bucket</label>
+                            <select [(ngModel)]="selectedBucket" (change)="selectBucket($event)" name="bucketNameEdit"
+                                id="bucketNameEdit" class="custom-select mb-3">
+                                <option [value]="bucket.name" *ngFor="let bucket of bucketListEdit">{{bucket.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-0">
+                            <label for="progressEditTask" class="label-text-color">Progress</label>
+                            <app-progress-dropdown [selectedStatus]="selectedProgess"
+                                (statusChangeEmit)="selectProgress($event)"> </app-progress-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label class="label-text-color" id="startDateEdit"> Start date </label>
+
+                        <mat-form-field class="example-full-width datepicket-sec ml-0">
+                            <input class="p-3" [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)"
+                                autocomplete="off" [min]="startDateMin" [(ngModel)]="startDate"
+                                (ngModelChange)="updateStartDate($event)" matInput [matDatepicker]="picker3"
+                                id="startDateEdit">
+                            <mat-datepicker-toggle matSuffix [for]="picker3">
+                                <mat-icon matDatepickerToggleIcon>
+                                    <img src="../../../../../assets/icons/callendericon.png" alt="arrow down icon" />
+                                </mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-6 mb-2">
+                        <label class="label-text-color" for="dueDateEdit"> End date </label>
+                        <mat-form-field class="example-full-width datepicket-sec ml-0">
+
+                            <input [disabled]="!utility.isActionAllowed(utility.restrictedActions.AddTask)" class="p-3"
+                                matInput [matDatepicker]="picker5" [min]="startDate" [(ngModel)]="dueDate"
+                                (ngModelChange)="updateEndDate($event)">
+                            <mat-datepicker-toggle matSuffix [for]="picker5">
+                                <mat-icon matDatepickerToggleIcon>
+                                    <img src="../../../../../assets/icons/callendericon.png" alt="arrow down icon" />
+                                </mat-icon>
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker5></mat-datepicker>
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="label-text-color" id="startDateEdit"> Complete </label>
+                        <div class="form-group">
+                            <app-range *ngIf="rangeFlag" [percentage]="percentage"
+                                (updatePercentageEmit)="updatePercentage($event)"></app-range>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="label-text-color" id="startDateEdit"> Label </label>
+                        <div class="form-group">
+                            <app-labels-drop-down *ngIf="labelsFlag" (categoryLabelObjEmit)="updateLabel($event)"
+                                [appliedCategories]="appliedCategories" [labelNamesData]="labelNamesData"
+                                [taskId]="taskId"
+                                [isActionEnable]="utility.isActionAllowed(utility.restrictedActions.AddTask)">
+                            </app-labels-drop-down>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <ng-container *ngIf="timeManagementFlag">
+
+                    <app-time-management (estimationsEmit)="getEstimations($event)" [actualStartDate]="startDate"
+                        [actualEndDate]="dueDate" [TasksGetByIdResp]="task"></app-time-management>
+                </ng-container>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="notesEdit" class="label-text-color">Notes</label>
+                    <textarea type="text" [attr.maxlength]="maxLengthTextArea" [(ngModel)]="notes"
+                        class="form-control notes" placeholder="" id="notesEdit"> </textarea>
+                </div>
+            </div>
+
+            <!-- check list sec start here -->
+            <div class="col-md-12">
+                <h3 class="label-text-color"> Checklist</h3>
+
+                <div class="checklist-container" *ngIf="checkListData?.length > 0">
+                    <div class="custom-control custom-checkbox mb-1"
+                        *ngFor="let check of checkListData; let i = index;">
+                        <!-- checkbox select to show -->
+                        <input type="checkbox" [value]="check.isChecked" [checked]="check.isChecked"
+                            class="custom-control-input" id="checkListCheck{{i}}" (change)="checkListToggle(i)"
+                            name="checkListCheck">
+                        <label class="custom-control-label" for="checkListCheck{{i}}"></label>
+                        <!-- checkbox select to show -->
+
+                        <input [attr.maxlength]="maxLengthInput" autocomplete="off" class="checklist-input"
+                            [ngClass]="{'text-stike': check.isChecked}" [value]="check.title" placeholder="Add an item"
+                            type="text" (change)="updateCheckList($event, check, i)" name="checkListName{{i}}">
+
+                        <button type="button" class="btn btn-link" (click)="deleteCheckList(i)">
+                            <img src="../../../../../assets/icons/Project-selection_delete.svg" alt="delete icon" />
+                        </button>
+                    </div>
+                </div>
+
+                <div class="custom-control custom-checkbox add-check mb-3">
+                    <input type="checkbox" class="custom-control-input" id="checkListCheck">
+                    <label (click)="addCheckList()" class="custom-control-label" for="checkListCheckAdd"></label>
+
+                    <input [attr.maxlength]="maxLengthInput" autocomplete="off" id="checkListCheckAdd"
+                        class="checklist-input" [(ngModel)]="addchecklistItem" placeholder="Add an item" type="text"
+                        index="i" (keyup.enter)="addCheckList()" name="checkListNameAdd">
+                </div>
+            </div>
+            <!-- check list sec end here -->
+
+            <div style="clear: both"></div>
+
+            <!-- attachments section start here -->
+            <div class="col-md-12">
+                <div class="form-group attachment-conatiner">
+                    <h3 class="label-text-color">Attachments</h3>
+                    <button type="button" id="attachmentBtn" class="btn attachment-btn-cls px-4 py-2 text-center"
+                        data-toggle="collapse" data-target="#attachmenContainer">Add Attachment</button>
+                    <!-- attachments selected list start here-->
+                    <div class="attachments-list-sec p-0 mt-3" *ngIf="References?.length > 0">
+                        <div class="col-md-12 p-0">
+                            <ng-container *ngFor="let item of References; let i =index" [ngSwitch]="splitUrl(item.url)">
+                                <p class="file-item mb-0">
+                                    <img src="../../../../../assets/icons/attachIcon.png" alt="attachment icon" />
+                                    <a [href]="item?.url" target="_blank"> {{item.name}} </a>
+
+                                    <button type="button" class="btn btn-link" (click)="deleteAttachment(i)">
+                                        <img src="../../../../../assets/icons/Project-selection_delete.svg"
+                                            alt="delete icon" />
+                                    </button>
+                                </p>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                    <!-- attachments selected list end here-->
+
+                    <!-- added url links start-->
+                    <div *ngIf="linksList?.length > 0">
+                        <div *ngFor="let alias of linksList; let i=index">
+                            <div class="url-text-sec">
+                                <img src="../../../../../assets/icons/attachIcon.png" alt="attachment icon">
+                                <a [href]="alias?.url" target="_blank"> {{alias?.name}} </a>
+                                <button type="button" class="btn btn-link deleteicon float-right"
+                                    (click)="deleteListItem(i)">
+                                    <img src="../../../../../assets/icons/Project-selection_delete.svg"
+                                        alt="delete icon" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- added url links end-->
+
+                    <div id="attachmenContainer" class="collapse attachment-menu">
+                        <!-- attachment menu dropdown start here -->
+                        <div class="list-group">
+                            <div class="custom-file">
+                                <input type="file" [accept]="fileTypes" #file [(ngModel)]="attachFiles"
+                                    (change)="fileUpload($event)" class="custom-file-input" id="customFile"
+                                    name="filename">
+                                <label class="custom-file-label m-0" for="customFile">Choose file</label>
+                            </div>
+                            <button type="button" (click)="linkUpload()"
+                                class="list-group-item list-group-item-action outline-none">Link</button>
+                            <button type="button" (click)="sharePointUpload()"
+                                class="list-group-item list-group-item-action outline-none">SharePoint</button>
+                        </div>
+                        <!-- attachment menu dropdown End here -->
+                    </div>
+                </div>
+            </div>
+            <!-- attachments section end here -->
+
+            <div style="clear: both"></div>
+
+            <div class="col-md-12 relativeElm comments-sec-container">
+                <div class="form-group">
+                    <label for="comments" class="label-text-color">Comments</label>
+                    <textarea [attr.maxlength]="maxLengthTextArea" [(ngModel)]="commentsValue"
+                        [attr.maxlength]="maxLengthTextArea" type="text" (keyup)="commentsAssignee($event)"
+                        class="form-control notes" placeholder="" id="comments"> </textarea>
+                </div>
+                <div class="comments-users" *ngIf="commentUsersFlag">
+                    <app-users-list (commentsEmit)="commentUserAdd($event)" [noAssigneeFlag]="noListMatch"
+                        [usersList]="commentUsers" [cmntAssignee]="commenstSearchAsgnee"></app-users-list>
+                </div>
+                <button type="button" class="btn send-comment float-right py-2 px-5" [disabled]="isCommentsValid()"
+                    (click)="sendComment()"> Send</button>
+            </div>
+
+            <div style="clear: both"></div>
+
+            <div class="col-md-12 mt-3" *ngIf="comments.length > 0">
+                <div class="comments-card" *ngFor="let c of comments">
+                    <div class="coment-data">
+                        <div class="comment-header">
+                            <app-user [user]="c" [showName]="true"></app-user>
+                            <div class="comment-date">
+                                {{c.formatDate}}
+                            </div>
+                        </div>
+                        <div class="comment-info">
+                            {{ c.comment }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="createdtask-comment">
+                    <div class="comments-card" *ngIf="task">
+                        <!-- Photo of the user who created should go here -->
+                        <div class="coment-data">
+                            <div class="comment-header">
+                                <app-user [user]="task.createdBy" [showName]="true"></app-user>
+                                <div class="comment-date">
+                                    {{createdDate(createdDateTime)}}
+
+                                </div>
+                            </div>
+                            <div class="comment-info">
+                                New Task {{ taskTitle }} created
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div class="col-md-12 pb-2 pt-2 update-edit-sec">
+            <button type="button" (click)="updateTask()" class="btn updateForm py-2 px-5"> Update </button>
+        </div>
+    </div>
+    <!-- Edit and details modal content-->
+</div>
+
+<!-- Link and sharepoint Modal start here-->
+<!-- The Modal -->
+<div class="modal fade attachment-conatiner edit-sharepointModal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" *ngIf="sharePointUploadFlag"> Documents </h4>
+                <h4 class="modal-title" *ngIf="linkUploadFlag"> Add a Link</h4>
+                <button type="button" id="attachModal" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="attachment-modal">
+                    <!-- link modal sec start here -->
+                    <div class="link-attach-sec" *ngIf="linkUploadFlag">
+                        <div class="col-md-12" [formGroup]="linkForm">
+                            <div class="form-group">
+                                <label for="addresslink"> Address</label>
+                                <input autocomplete="off" #linkUrlValid required type="text"
+                                    formControlName="linkUrlValue" id="addresslink" class="form-control link-url"
+                                    placeholder="Add your link here" />
+                                <p *ngIf="linkForm.controls.linkUrlValue.errors && linkForm.controls.linkUrlValue.touched"
+                                    class="text-danger">Please enter a valid url</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="addressText"> Text to display</label>
+                                <input [attr.maxlength]="maxLengthInput" autocomplete="off" type="text" id="addressText"
+                                    class="form-control link-name" formControlName="linkUrlNameValue"
+                                    placeholder="Give your link name here" required />
+                                <p *ngIf="linkForm.controls.linkUrlNameValue.errors && linkForm.controls.linkUrlNameValue.touched"
+                                    class="text-danger">Please enter link name</p>
+                            </div>
+                            <button class="btn btn-save btn-success" [disabled]="!linkForm.valid && addLinkFormValid()"
+                                (click)="linkSave()">Save</button>
+
+                        </div>
+                    </div>
+                    <!-- link modal sec start here -->
+
+                    <!-- sharepoint modal sec start here -->
+                    <div class="sharepoint-attach-sec" *ngIf="sharePointUploadFlag">
+                        <div class="col-md-12">
+                            <div class="form-group sharepoint-table-sec">
+
+                                <table mat-table [dataSource]="dataSourceAttachments" matSort class="mat-elevation-z8">
+                                    <caption></caption>
+                                    <!-- Name Column -->
+                                    <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header id="nameHead"> Name </th>
+                                        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+                                    </ng-container>
+
+                                    <!-- Modified Date Column -->
+                                    <ng-container matColumnDef="ModifiedDate">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header id=""> Modified Date </th>
+                                        <td mat-cell *matCellDef="let element"> {{ lastModified(element) }} </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row [class.highlighted]="i == rowIndex"
+                                        *matRowDef="let row; columns: displayedColumns; let i = index"
+                                        (click)="sharepointSelectRow(row, i)"></tr>
+                                </table>
+                            </div>
+                            <button class="btn btn-success" [disabled]="sharepointSelected"
+                                (click)="sharePointSave()">Save</button>
+                            <button class="btn btn-cancel btn-light" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- sharepoint modal sec start here -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Link and sharepoint Modal end here-->

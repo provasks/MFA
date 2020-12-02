@@ -1,0 +1,106 @@
+<div class="projects">
+    <div id="container" #container (click)="onClick()">
+        <app-header>
+        </app-header>
+        <app-resouce-management *ngIf="showResourceManagement"
+            (closeResourceManagementEmitter)="closeResourceManagement()"></app-resouce-management>
+        <div class="add-task-modal-sec add-task-modal" *ngIf="addEditModal">
+            <add-edit-comp (closeAddEditModalEmit)="closeAddEditModal($event)" [isAddTaskFlag]="isAddTaskFlag"
+                [isEditTaskFlag]="isEditTaskFlag" [childTaskId]="childId" [parentTaskName]="parentTaskName"
+                [parentTaskData]="parentTaskData"></add-edit-comp>
+        </div>
+
+        <div class="dependency-modal" *ngIf="dependencyModalFlag">
+
+            <app-task-dependency (closeDependencyModalEmit)="closeDependenceModal($event)" [rowData]="dependentData">
+            </app-task-dependency>
+        </div>
+
+        <div *ngIf="allTasks && allTasks.length" class="wrapper">
+            <div id="left_panel" #left>
+                <app-task-table (dependencyModalEmit)="dependencyModal($event)" (AddEditModalEmit)="editTaskModal()"
+                    (addSubTaskModalEmit)="subTaskModal($event)" [selectedColumns]="selectedColumns"
+                    [allTasks]="allTasks">
+                </app-task-table>
+            </div>
+            <div id="drag" #handle>
+                <div class="handle"></div>
+            </div>
+            <div id="right_panel" #right (scroll)="onScroll()">
+                <app-task-chart>
+                </app-task-chart>
+            </div>
+        </div>
+        <div *ngIf="!(allTasks && allTasks.length)" class="no-task">
+            <div #left></div>
+            <div #handle></div>
+            <div #right></div>
+            <div class="message">
+                <img src="../../../../../assets/images/no-tasks-found.png" alt="No Tasks found">
+                <ng-container *ngIf="taskLoading">
+                    <div class="orange">HELLO!!</div>
+                    <div>TASKS ARE LOADING ... </div>
+                </ng-container>
+                <ng-container *ngIf="!taskLoading">
+                    <div class="orange">OOOOPS! NO RESULTS FOUND</div>
+                    <div>WHILE GETTING TASKS FOR THIS PROJECT</div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="button-panel" *ngIf="!showHideViewPanel">
+            <ng-container *ngIf="utility.isActionAllowed(utility.restrictedActions.AddTask)">
+                <button class="btn btn-sm add-task-btn pull-right" (click)="addTaskModal()">Add Task</button>
+            </ng-container>
+
+            <span *ngIf="allTasks && allTasks.length" class=" view-btn pull-right " (click)="columnViewer.open()">
+
+                <img src="../../../../../assets/icons/interface.png" alt="View">
+                <mat-label class="view-label">&nbsp;View</mat-label>
+
+                <img *ngIf="columnViewerOpened" src="../../../../../assets/icons/multimedia.png" alt="Viewer Opened">
+
+                <img *ngIf="!columnViewerOpened" src="../../../../../assets/icons/multimedia_down.png"
+                    alt="Viewer Closed">
+
+            </span>
+            <span *ngIf="allTasks && allTasks.length" class=" view-btn pull-right " #menuTrigger="matMenuTrigger"
+                [matMenuTriggerFor]="menu">
+                <img src="../../../../../assets/icons/export.png" alt="Export Planner">
+                <mat-label class="export-label">&nbsp;Export</mat-label>
+
+                <img *ngIf="exportViewerOpened" src="../../../../../assets/icons/multimedia.png" alt="Viewer Opened">
+
+                <img *ngIf="!exportViewerOpened" src="../../../../../assets/icons/multimedia_down.png"
+                    alt="Viewer Closed">
+
+                <mat-menu class="mt-3" (openedChange)="toggleExportViewer($event)" #menu="matMenu">
+                    <mat-label class="export-title">&nbsp;Export As</mat-label>
+                    <button mat-menu-item (click)="exportPNG()">PNG</button>
+                    <button mat-menu-item (click)="exportToExcel()">Excel</button>
+                </mat-menu>
+            </span>
+            <button *ngIf="resourceLoaded"
+                class="btn btn-sm resource-management pull-right" (click)="toggleResourceManagement($event)">
+                <img src="./../../../../../assets/icons/resource.png" alt="Resource Management">Resource
+                Management</button>
+
+            <div class="view-panel">
+
+                <mat-select class="mt-1" [formControl]="viewAllColumns" [ngModel]="selectedDisplayedColumns "
+                    #columnViewer (selectionChange)="showColumns($event)" (openedChange)="toggleColumnViewer($event)"
+                    multiple disableOptionCentering panelClass="columnViewer">
+                    <div class="view-item">
+                        <span>View</span>
+                        <span class="tableClear" (click)="clearView('view')"> Clear</span>
+                    </div>
+
+                    <div class="option-list">
+                        <mat-option *ngFor="let item of displayedColumns" [value]="item">
+                            {{item|titlecase }}
+                        </mat-option>
+                    </div>
+                </mat-select>
+            </div>
+        </div>
+    </div>
+</div>

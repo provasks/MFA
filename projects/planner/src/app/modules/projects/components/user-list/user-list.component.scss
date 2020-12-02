@@ -1,0 +1,18 @@
+@import "./../../../../../styles.scss";
+
+$image-width: 25px;
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    .rest {
+        height: $image-width;
+        width: $image-width;
+        border: 1px solid $lightblue;
+        border-radius: 50%;
+        line-height: calc(#{$image-width} - 2px);
+        color: $assignee-img-color;
+        font-size: 10px;
+        background-color: $selcetedRow;
+        text-align: center;
+    }
+}
